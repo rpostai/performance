@@ -1,0 +1,358 @@
+[INFO] Scanning for projects...
+[INFO]                                                                         
+[INFO] ------------------------------------------------------------------------
+[INFO] Building Performance Software 0.0.1-SNAPSHOT
+[INFO] ------------------------------------------------------------------------
+[INFO] 
+[INFO] --- maven-clean-plugin:2.5:clean (default-clean) @ principal ---
+[INFO] Deleting C:\work\performance\target
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:resources (default-resources) @ principal ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 0 resource
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:compile (default-compile) @ principal ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 20 source files to C:\work\performance\target\classes
+[INFO] 
+[INFO] --- maven-resources-plugin:2.6:testResources (default-testResources) @ principal ---
+[WARNING] Using platform encoding (Cp1252 actually) to copy filtered resources, i.e. build is platform dependent!
+[INFO] Copying 7 resources
+[INFO] 
+[INFO] --- maven-compiler-plugin:3.2:testCompile (default-testCompile) @ principal ---
+[INFO] Changes detected - recompiling the module!
+[WARNING] File encoding has not been set, using platform encoding Cp1252, i.e. build is platform dependent!
+[INFO] Compiling 2 source files to C:\work\performance\target\test-classes
+[INFO] 
+[INFO] --- maven-surefire-plugin:2.12.4:test (default-test) @ principal ---
+[INFO] Surefire report directory: C:\work\performance\target\surefire-reports
+
+-------------------------------------------------------
+ T E S T S
+-------------------------------------------------------
+Running com.rp.performance.repository.AreaConhecimentoRepositoryBeanTest
+Listening for transport dt_socket at address: 8000
+15:33:06,091 INFO  [org.jboss.modules] (main) JBoss Modules version 1.3.3.Final
+15:33:06,373 INFO  [org.jboss.msc] (main) JBoss MSC version 1.2.2.Final
+15:33:06,466 INFO  [org.jboss.as] (MSC service thread 1-8) JBAS015899: WildFly 8.1.0.Final "Kenny" starting
+15:33:08,170 INFO  [org.jboss.as.server] (Controller Boot Thread) JBAS015888: Creating http management service using socket-binding (management-http)
+15:33:08,201 INFO  [org.xnio] (MSC service thread 1-5) XNIO version 3.2.2.Final
+15:33:08,217 INFO  [org.xnio.nio] (MSC service thread 1-5) XNIO NIO Implementation Version 3.2.2.Final
+15:33:08,263 INFO  [org.jboss.as.naming] (ServerService Thread Pool -- 40) JBAS011800: Activating Naming Subsystem
+15:33:08,279 INFO  [org.wildfly.extension.io] (ServerService Thread Pool -- 31) WFLYIO001: Worker 'default' has auto-configured to 8 core threads with 64 task threads based on your 4 available processors
+15:33:08,295 INFO  [org.jboss.as.clustering.infinispan] (ServerService Thread Pool -- 32) JBAS010280: Activating Infinispan subsystem.
+15:33:08,310 INFO  [org.jboss.as.webservices] (ServerService Thread Pool -- 48) JBAS015537: Activating WebServices Extension
+15:33:08,326 INFO  [org.jboss.as.connector.logging] (MSC service thread 1-4) JBAS010408: Starting JCA Subsystem (IronJacamar 1.1.5.Final)
+15:33:08,342 WARN  [org.jboss.as.txn] (ServerService Thread Pool -- 46) JBAS010153: Node identifier property is set to the default value. Please make sure it is unique.
+15:33:08,373 INFO  [org.jboss.as.security] (ServerService Thread Pool -- 45) JBAS013171: Activating Security Subsystem
+15:33:08,373 INFO  [org.jboss.as.jsf] (ServerService Thread Pool -- 38) JBAS012615: Activated the following JSF Implementations: [main]
+15:33:08,373 INFO  [org.jboss.as.naming] (MSC service thread 1-1) JBAS011802: Starting Naming Service
+15:33:08,388 INFO  [org.jboss.as.mail.extension] (MSC service thread 1-1) JBAS015400: Bound mail session [java:jboss/mail/Default]
+15:33:08,435 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 47) JBAS017502: Undertow 1.0.15.Final starting
+15:33:08,435 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-1) JBAS017502: Undertow 1.0.15.Final starting
+15:33:08,467 INFO  [org.jboss.as.security] (MSC service thread 1-8) JBAS013170: Current PicketBox version=4.0.21.Beta1
+15:33:08,513 INFO  [org.jboss.as.connector.subsystems.datasources] (ServerService Thread Pool -- 27) JBAS010403: Deploying JDBC-compliant driver class org.h2.Driver (version 1.3)
+15:33:08,529 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-1) JBAS010417: Started Driver service with driver-name = h2
+15:33:08,545 INFO  [org.wildfly.extension.undertow] (ServerService Thread Pool -- 47) JBAS017527: Creating file handler for path C:\tools\wildfly-8.1.0.Final/welcome-content
+15:33:08,560 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-8) JBAS017525: Started server default-server.
+15:33:08,623 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-1) JBAS017531: Host default-host starting
+15:33:09,107 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-3) JBAS010400: Bound data source [java:jboss/datasources/ExampleDS]
+15:33:09,154 INFO  [org.jboss.as.server.deployment.scanner] (MSC service thread 1-3) JBAS015012: Started FileSystemDeploymentService for directory C:\tools\wildfly-8.1.0.Final\standalone\deployments
+15:33:09,248 INFO  [org.jboss.remoting] (MSC service thread 1-5) JBoss Remoting version 4.0.3.Final
+15:33:09,248 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-3) JBAS017519: Undertow HTTP listener default listening on /127.0.0.1:8080
+15:33:09,717 INFO  [org.jboss.ws.common.management] (MSC service thread 1-6) JBWS022052: Starting JBoss Web Services - Stack CXF Server 4.2.4.Final
+15:33:09,935 INFO  [org.jboss.as] (Controller Boot Thread) JBAS015961: Http management interface listening on http://127.0.0.1:9990/management
+15:33:09,935 INFO  [org.jboss.as] (Controller Boot Thread) JBAS015951: Admin console listening on http://127.0.0.1:9990
+15:33:09,935 INFO  [org.jboss.as] (Controller Boot Thread) JBAS015874: WildFly 8.1.0.Final "Kenny" started in 4328ms - Started 184 of 233 services (81 services are lazy, passive or on-demand)
+15:33:14,701 INFO  [org.jboss.as.repository] (management-handler-thread - 2) JBAS014900: Content added at location C:\tools\wildfly-8.1.0.Final\standalone\data\content\50\091d0025054cd8b53f458263b0e0c727dedbe7\content
+15:33:14,733 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-8) JBAS015876: Starting deployment of "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war" (runtime-name: "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war")
+15:33:16,279 INFO  [org.jboss.as.jpa] (MSC service thread 1-6) JBAS011401: Read persistence.xml for performancePU
+15:33:16,529 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-8) JBAS010400: Bound data source [java:/performance]
+15:33:16,529 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 24) JBAS011409: Starting Persistence Unit (phase 1 of 2) Service 'b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war#performancePU'
+15:33:16,545 INFO  [org.hibernate.jpa.internal.util.LogHelper] (ServerService Thread Pool -- 24) HHH000204: Processing PersistenceUnitInfo [
+	name: performancePU
+	...]
+15:33:16,639 INFO  [org.hibernate.Version] (ServerService Thread Pool -- 24) HHH000412: Hibernate Core {4.3.5.Final}
+15:33:16,639 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 24) HHH000206: hibernate.properties not found
+15:33:16,639 INFO  [org.hibernate.cfg.Environment] (ServerService Thread Pool -- 24) HHH000021: Bytecode provider name : javassist
+15:33:16,873 INFO  [org.jboss.weld.deployer] (MSC service thread 1-8) JBAS016002: Processing weld deployment b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war
+15:33:16,936 INFO  [org.hibernate.validator.internal.util.Version] (MSC service thread 1-8) HV000001: Hibernate Validator 5.1.0.Final
+15:33:16,998 INFO  [org.jboss.as.ejb3.deployment.processors.EjbJndiBindingsDeploymentUnitProcessor] (MSC service thread 1-8) JNDI bindings for session bean named AreaConhecimentoRepositoryBean in deployment unit deployment "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war" are as follows:
+
+	java:global/b7f4403f-d5f9-4130-bc9d-ece900b4ae0d/AreaConhecimentoRepositoryBean!com.rp.performance.repository.prova.AreaConhecimentoRepository
+	java:app/b7f4403f-d5f9-4130-bc9d-ece900b4ae0d/AreaConhecimentoRepositoryBean!com.rp.performance.repository.prova.AreaConhecimentoRepository
+	java:module/AreaConhecimentoRepositoryBean!com.rp.performance.repository.prova.AreaConhecimentoRepository
+	java:global/b7f4403f-d5f9-4130-bc9d-ece900b4ae0d/AreaConhecimentoRepositoryBean
+	java:app/b7f4403f-d5f9-4130-bc9d-ece900b4ae0d/AreaConhecimentoRepositoryBean
+	java:module/AreaConhecimentoRepositoryBean
+
+15:33:17,154 INFO  [org.jboss.weld.deployer] (MSC service thread 1-8) JBAS016005: Starting Services for CDI deployment: b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war
+15:33:17,186 INFO  [org.jboss.weld.Version] (MSC service thread 1-8) WELD-000900: 2.1.2 (Final)
+15:33:17,233 INFO  [org.jboss.weld.deployer] (MSC service thread 1-8) JBAS016008: Starting weld service for deployment b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war
+15:33:17,639 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 24) JBAS011409: Starting Persistence Unit (phase 2 of 2) Service 'b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war#performancePU'
+15:33:17,717 INFO  [org.hibernate.annotations.common.Version] (ServerService Thread Pool -- 24) HCANN000001: Hibernate Commons Annotations {4.0.4.Final}
+15:33:17,998 INFO  [org.hibernate.dialect.Dialect] (ServerService Thread Pool -- 24) HHH000400: Using dialect: org.hibernate.dialect.H2Dialect
+15:33:17,998 WARN  [org.hibernate.dialect.H2Dialect] (ServerService Thread Pool -- 24) HHH000431: Unable to determine H2 database version, certain features may not work
+15:33:18,233 INFO  [org.hibernate.hql.internal.ast.ASTQueryTranslatorFactory] (ServerService Thread Pool -- 24) HHH000397: Using ASTQueryTranslatorFactory
+15:33:18,748 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000227: Running hbm2ddl schema export
+15:33:18,748 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento drop constraint FK_8nsngda8j31mvqual7fhll61h if exists
+15:33:18,748 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table area_conhecimento drop constraint FK_8nsngda8j31mvqual7fhll61h if exists
+15:33:18,748 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "AREA_CONHECIMENTO" not found; SQL statement:
+alter table area_conhecimento drop constraint FK_8nsngda8j31mvqual7fhll61h if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento_assuntos drop constraint FK_cp7g03w89f3k0ofhess8y5otq if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table area_conhecimento_assuntos drop constraint FK_cp7g03w89f3k0ofhess8y5otq if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "AREA_CONHECIMENTO_ASSUNTOS" not found; SQL statement:
+alter table area_conhecimento_assuntos drop constraint FK_cp7g03w89f3k0ofhess8y5otq if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento_assuntos drop constraint FK_3x8rpjslh7g7xg6cs3s6ertpo if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table area_conhecimento_assuntos drop constraint FK_3x8rpjslh7g7xg6cs3s6ertpo if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "AREA_CONHECIMENTO_ASSUNTOS" not found; SQL statement:
+alter table area_conhecimento_assuntos drop constraint FK_3x8rpjslh7g7xg6cs3s6ertpo if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table assunto drop constraint FK_2i28pt6b8vqxofe66fmmyqbdh if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table assunto drop constraint FK_2i28pt6b8vqxofe66fmmyqbdh if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "ASSUNTO" not found; SQL statement:
+alter table assunto drop constraint FK_2i28pt6b8vqxofe66fmmyqbdh if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table assunto drop constraint FK_212spr6xq3sb78xrgo7wo9lo0 if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table assunto drop constraint FK_212spr6xq3sb78xrgo7wo9lo0 if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "ASSUNTO" not found; SQL statement:
+alter table assunto drop constraint FK_212spr6xq3sb78xrgo7wo9lo0 if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table candidato drop constraint FK_e3x92u68mve4rhu6gjfcyq49i if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table candidato drop constraint FK_e3x92u68mve4rhu6gjfcyq49i if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "CANDIDATO" not found; SQL statement:
+alter table candidato drop constraint FK_e3x92u68mve4rhu6gjfcyq49i if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table empresa_telefone drop constraint FK_q0t67urnv676v2b65mm7lo2o9 if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table empresa_telefone drop constraint FK_q0t67urnv676v2b65mm7lo2o9 if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "EMPRESA_TELEFONE" not found; SQL statement:
+alter table empresa_telefone drop constraint FK_q0t67urnv676v2b65mm7lo2o9 if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova drop constraint FK_nv8jchtdys4n8sfw8itwwu6si if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table execucao_prova drop constraint FK_nv8jchtdys4n8sfw8itwwu6si if exists
+15:33:18,764 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "EXECUCAO_PROVA" not found; SQL statement:
+alter table execucao_prova drop constraint FK_nv8jchtdys4n8sfw8itwwu6si if exists [42102-173]
+15:33:18,764 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova drop constraint FK_8q2hqqv0jfsdvw07s02v2c63p if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table execucao_prova drop constraint FK_8q2hqqv0jfsdvw07s02v2c63p if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "EXECUCAO_PROVA" not found; SQL statement:
+alter table execucao_prova drop constraint FK_8q2hqqv0jfsdvw07s02v2c63p if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova drop constraint FK_tc1loaur9m05kbiwq6nuy4rtb if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table execucao_prova drop constraint FK_tc1loaur9m05kbiwq6nuy4rtb if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "EXECUCAO_PROVA" not found; SQL statement:
+alter table execucao_prova drop constraint FK_tc1loaur9m05kbiwq6nuy4rtb if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table nivel_dificuldade drop constraint FK_puwlwwikev0k163m9gk1l1nv if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table nivel_dificuldade drop constraint FK_puwlwwikev0k163m9gk1l1nv if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "NIVEL_DIFICULDADE" not found; SQL statement:
+alter table nivel_dificuldade drop constraint FK_puwlwwikev0k163m9gk1l1nv if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table prova drop constraint FK_3b3tgcjbr08f6s0maiu859r26 if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table prova drop constraint FK_3b3tgcjbr08f6s0maiu859r26 if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "PROVA" not found; SQL statement:
+alter table prova drop constraint FK_3b3tgcjbr08f6s0maiu859r26 if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table prova_questao drop constraint FK_c64ie7lwfs9du0ct5068cbtqi if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table prova_questao drop constraint FK_c64ie7lwfs9du0ct5068cbtqi if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "PROVA_QUESTAO" not found; SQL statement:
+alter table prova_questao drop constraint FK_c64ie7lwfs9du0ct5068cbtqi if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table prova_questao drop constraint FK_2kdlatplryqul7j12koetowjt if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table prova_questao drop constraint FK_2kdlatplryqul7j12koetowjt if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "PROVA_QUESTAO" not found; SQL statement:
+alter table prova_questao drop constraint FK_2kdlatplryqul7j12koetowjt if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao drop constraint FK_pqj13vh5rhk34yu07u2pn0h9f if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao drop constraint FK_pqj13vh5rhk34yu07u2pn0h9f if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO" not found; SQL statement:
+alter table questao drop constraint FK_pqj13vh5rhk34yu07u2pn0h9f if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao drop constraint FK_mwqbcmmttiv3kkqwalispwed2 if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao drop constraint FK_mwqbcmmttiv3kkqwalispwed2 if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO" not found; SQL statement:
+alter table questao drop constraint FK_mwqbcmmttiv3kkqwalispwed2 if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao drop constraint FK_dw9fl7s2q415ll0nnstv04gyx if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao drop constraint FK_dw9fl7s2q415ll0nnstv04gyx if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO" not found; SQL statement:
+alter table questao drop constraint FK_dw9fl7s2q415ll0nnstv04gyx if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_alternativa drop constraint FK_7egu4p07snhfnux6j5rrcilk3 if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_alternativa drop constraint FK_7egu4p07snhfnux6j5rrcilk3 if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_ALTERNATIVA" not found; SQL statement:
+alter table questao_alternativa drop constraint FK_7egu4p07snhfnux6j5rrcilk3 if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_alternativa drop constraint FK_ntryx9a4fitur4fpui4vt9cyo if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_alternativa drop constraint FK_ntryx9a4fitur4fpui4vt9cyo if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_ALTERNATIVA" not found; SQL statement:
+alter table questao_alternativa drop constraint FK_ntryx9a4fitur4fpui4vt9cyo if exists [42102-173]
+15:33:18,780 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_alternativa_anexos drop constraint FK_w809g5j1i5oaiy7389g3wrhc if exists
+15:33:18,780 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_alternativa_anexos drop constraint FK_w809g5j1i5oaiy7389g3wrhc if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_ALTERNATIVA_ANEXOS" not found; SQL statement:
+alter table questao_alternativa_anexos drop constraint FK_w809g5j1i5oaiy7389g3wrhc if exists [42102-173]
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_anexos drop constraint FK_e84lhccsdontgb2rkj1e620fi if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_anexos drop constraint FK_e84lhccsdontgb2rkj1e620fi if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_ANEXOS" not found; SQL statement:
+alter table questao_anexos drop constraint FK_e84lhccsdontgb2rkj1e620fi if exists [42102-173]
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_assunto drop constraint FK_k71mpa0swpypyyjdgfo9hw5r5 if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_assunto drop constraint FK_k71mpa0swpypyyjdgfo9hw5r5 if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_ASSUNTO" not found; SQL statement:
+alter table questao_assunto drop constraint FK_k71mpa0swpypyyjdgfo9hw5r5 if exists [42102-173]
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_assunto drop constraint FK_i6fuqy8hub0vq2nvoye80bvuf if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_assunto drop constraint FK_i6fuqy8hub0vq2nvoye80bvuf if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_ASSUNTO" not found; SQL statement:
+alter table questao_assunto drop constraint FK_i6fuqy8hub0vq2nvoye80bvuf if exists [42102-173]
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_gabarito drop constraint FK_920239r6u8vx7i6th2kcq9s81 if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_gabarito drop constraint FK_920239r6u8vx7i6th2kcq9s81 if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_GABARITO" not found; SQL statement:
+alter table questao_gabarito drop constraint FK_920239r6u8vx7i6th2kcq9s81 if exists [42102-173]
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_gabarito drop constraint FK_puh5tbnuq2wj7yt59f2b4sa73 if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: alter table questao_gabarito drop constraint FK_puh5tbnuq2wj7yt59f2b4sa73 if exists
+15:33:18,795 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Table "QUESTAO_GABARITO" not found; SQL statement:
+alter table questao_gabarito drop constraint FK_puh5tbnuq2wj7yt59f2b4sa73 if exists [42102-173]
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table area_conhecimento if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table area_conhecimento_assuntos if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table assunto if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table candidato if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table empresa if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table empresa_telefone if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table execucao_prova if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table nivel_dificuldade if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table prova if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table prova_questao if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table questao if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table questao_alternativa if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table questao_alternativa_anexos if exists
+15:33:18,795 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table questao_anexos if exists
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table questao_assunto if exists
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop table questao_gabarito if exists
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: drop sequence hibernate_sequence
+15:33:18,811 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000389: Unsuccessful: drop sequence hibernate_sequence
+15:33:18,811 ERROR [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) Sequence "HIBERNATE_SEQUENCE" not found; SQL statement:
+drop sequence hibernate_sequence [90036-173]
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table area_conhecimento (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, descricao varchar(100) not null, empresa_id bigint not null, primary key (id))
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table area_conhecimento_assuntos (area_conhecimento_id bigint not null, assunto_id bigint not null, primary key (area_conhecimento_id, assunto_id))
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table assunto (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, descricao varchar(100) not null, empresa_id bigint not null, assunto_pai_id bigint, primary key (id))
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table candidato (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, cpf varchar(11) not null, nome varchar(200) not null, empresa_id bigint not null, primary key (id))
+15:33:18,811 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table empresa (id bigint not null, cnpj varchar(14) not null, bairro varchar(100) not null, cep integer not null, endereco varchar(400) not null, municipio varchar(100) not null, numero varchar(10) not null, uf varchar(2) not null, nome_fantasia varchar(200) not null, razao_social varchar(200) not null, primary key (id))
+15:33:18,826 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table empresa_telefone (empresa_id bigint not null, ddd integer, numero integer, tipo_telefone varchar(255))
+15:33:18,826 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table execucao_prova (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, data_abertura timestamp not null, data_conclusao timestamp, data_inicio timestamp, data_validade timestamp not null, voucher varchar(30), empresa_id bigint not null, candidato_id bigint, prova_id bigint, primary key (id))
+15:33:18,826 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table nivel_dificuldade (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, descricao varchar(100) not null, empresa_id bigint not null, primary key (id))
+15:33:18,842 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table prova (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, empresa_id bigint not null, primary key (id))
+15:33:18,842 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table prova_questao (prova_id bigint not null, questao_id bigint not null, primary key (prova_id, questao_id))
+15:33:18,842 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table questao (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, questao clob not null, tipoQuestao varchar(255), empresa_id bigint not null, area_conhecimento_id bigint not null, nivel_dificuldade_id bigint, primary key (id))
+15:33:18,842 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table questao_alternativa (id bigint not null, data_cadastro timestamp not null, data_ultima_alteracao timestamp, descricao clob, empresa_id bigint not null, questao_id bigint, primary key (id))
+15:33:18,858 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table questao_alternativa_anexos (AlternativaQuestao_id bigint not null, anexos varchar(255))
+15:33:18,858 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table questao_anexos (questao_id bigint not null, anexos varchar(255))
+15:33:18,858 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table questao_assunto (questao_id bigint not null, assunto_id bigint not null, primary key (questao_id, assunto_id))
+15:33:18,858 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create table questao_gabarito (questao_id bigint not null, questao_alternativa_id bigint not null, primary key (questao_id, questao_alternativa_id))
+15:33:18,873 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento_assuntos add constraint UK_cp7g03w89f3k0ofhess8y5otq  unique (assunto_id)
+15:33:18,873 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table candidato add constraint UK_5xv4t5gwmhrmbom9ipbjvust2  unique (cpf)
+15:33:18,873 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova add constraint UK_i522lhmdl2phvyxifnewp56l8  unique (candidato_id, prova_id, voucher)
+15:33:18,873 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova add constraint UK_7h3bfy4r3ov4vxehasxyacdg8  unique (voucher)
+15:33:18,873 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_gabarito add constraint UK_920239r6u8vx7i6th2kcq9s81  unique (questao_alternativa_id)
+15:33:18,873 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento add constraint FK_8nsngda8j31mvqual7fhll61h foreign key (empresa_id) references empresa
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento_assuntos add constraint FK_cp7g03w89f3k0ofhess8y5otq foreign key (assunto_id) references assunto
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table area_conhecimento_assuntos add constraint FK_3x8rpjslh7g7xg6cs3s6ertpo foreign key (area_conhecimento_id) references area_conhecimento
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table assunto add constraint FK_2i28pt6b8vqxofe66fmmyqbdh foreign key (empresa_id) references empresa
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table assunto add constraint FK_212spr6xq3sb78xrgo7wo9lo0 foreign key (assunto_pai_id) references assunto
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table candidato add constraint FK_e3x92u68mve4rhu6gjfcyq49i foreign key (empresa_id) references empresa
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table empresa_telefone add constraint FK_q0t67urnv676v2b65mm7lo2o9 foreign key (empresa_id) references empresa
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova add constraint FK_nv8jchtdys4n8sfw8itwwu6si foreign key (empresa_id) references empresa
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova add constraint FK_8q2hqqv0jfsdvw07s02v2c63p foreign key (candidato_id) references candidato
+15:33:18,889 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table execucao_prova add constraint FK_tc1loaur9m05kbiwq6nuy4rtb foreign key (prova_id) references prova
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table nivel_dificuldade add constraint FK_puwlwwikev0k163m9gk1l1nv foreign key (empresa_id) references empresa
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table prova add constraint FK_3b3tgcjbr08f6s0maiu859r26 foreign key (empresa_id) references empresa
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table prova_questao add constraint FK_c64ie7lwfs9du0ct5068cbtqi foreign key (questao_id) references questao
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table prova_questao add constraint FK_2kdlatplryqul7j12koetowjt foreign key (prova_id) references prova
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao add constraint FK_pqj13vh5rhk34yu07u2pn0h9f foreign key (empresa_id) references empresa
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao add constraint FK_mwqbcmmttiv3kkqwalispwed2 foreign key (area_conhecimento_id) references area_conhecimento
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao add constraint FK_dw9fl7s2q415ll0nnstv04gyx foreign key (nivel_dificuldade_id) references nivel_dificuldade
+15:33:18,905 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_alternativa add constraint FK_7egu4p07snhfnux6j5rrcilk3 foreign key (empresa_id) references empresa
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_alternativa add constraint FK_ntryx9a4fitur4fpui4vt9cyo foreign key (questao_id) references questao
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_alternativa_anexos add constraint FK_w809g5j1i5oaiy7389g3wrhc foreign key (AlternativaQuestao_id) references questao_alternativa
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_anexos add constraint FK_e84lhccsdontgb2rkj1e620fi foreign key (questao_id) references questao
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_assunto add constraint FK_k71mpa0swpypyyjdgfo9hw5r5 foreign key (assunto_id) references assunto
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_assunto add constraint FK_i6fuqy8hub0vq2nvoye80bvuf foreign key (questao_id) references questao
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_gabarito add constraint FK_920239r6u8vx7i6th2kcq9s81 foreign key (questao_alternativa_id) references questao_alternativa
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: alter table questao_gabarito add constraint FK_puh5tbnuq2wj7yt59f2b4sa73 foreign key (questao_id) references questao
+15:33:18,920 INFO  [stdout] (ServerService Thread Pool -- 24) Hibernate: create sequence hibernate_sequence start with 1 increment by 1
+15:33:18,936 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 24) HHH000230: Schema export complete
+15:33:19,733 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-5) JBAS017534: Registered web context: /b7f4403f-d5f9-4130-bc9d-ece900b4ae0d
+15:33:19,905 INFO  [org.jboss.as.server] (management-handler-thread - 2) JBAS018559: Deployed "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war" (runtime-name : "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war")
+15:33:21,932 WARN  [org.dbunit.dataset.AbstractTableMetaData] (default task-1) Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'H2' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:33:21,948 WARN  [org.dbunit.dataset.AbstractTableMetaData] (default task-1) Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'H2' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:33:21,948 WARN  [org.dbunit.dataset.AbstractTableMetaData] (default task-1) Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'H2' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:33:22,198 INFO  [stdout] (default task-1) Hibernate: select areaconhec0_.id as id1_0_, areaconhec0_.data_cadastro as data_cad2_0_, areaconhec0_.data_ultima_alteracao as data_ult3_0_, areaconhec0_.empresa_id as empresa_5_0_, areaconhec0_.descricao as descrica4_0_ from area_conhecimento areaconhec0_
+15:33:22,229 INFO  [stdout] (default task-1) Hibernate: select empresa0_.id as id1_4_0_, empresa0_.cnpj as cnpj2_4_0_, empresa0_.bairro as bairro3_4_0_, empresa0_.cep as cep4_4_0_, empresa0_.endereco as endereco5_4_0_, empresa0_.municipio as municipi6_4_0_, empresa0_.numero as numero7_4_0_, empresa0_.uf as uf8_4_0_, empresa0_.nome_fantasia as nome_fan9_4_0_, empresa0_.razao_social as razao_s10_4_0_ from empresa empresa0_ where empresa0_.id=?
+15:33:22,460 WARN  [org.dbunit.dataset.AbstractTableMetaData] (default task-11) Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'H2' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:33:22,475 WARN  [org.dbunit.dataset.AbstractTableMetaData] (default task-11) Potential problem found: The configured data type factory 'class org.dbunit.dataset.datatype.DefaultDataTypeFactory' might cause problems with the current database 'H2' (e.g. some datatypes may not be supported properly). In rare cases you might see this message because the list of supported database products is incomplete (list=[derby]). If so please request a java-class update via the forums.If you are using your own IDataTypeFactory extending DefaultDataTypeFactory, ensure that you override getValidDbProducts() to specify the supported database products.
+15:33:26,508 INFO  [stdout] (default task-11) Hibernate: select empresa0_.id as id1_4_0_, empresa0_.cnpj as cnpj2_4_0_, empresa0_.bairro as bairro3_4_0_, empresa0_.cep as cep4_4_0_, empresa0_.endereco as endereco5_4_0_, empresa0_.municipio as municipi6_4_0_, empresa0_.numero as numero7_4_0_, empresa0_.uf as uf8_4_0_, empresa0_.nome_fantasia as nome_fan9_4_0_, empresa0_.razao_social as razao_s10_4_0_ from empresa empresa0_ where empresa0_.id=?
+15:33:26,524 INFO  [stdout] (default task-11) Hibernate: select telefones0_.empresa_id as empresa_1_4_0_, telefones0_.ddd as ddd2_5_0_, telefones0_.numero as numero3_5_0_, telefones0_.tipo_telefone as tipo_tel4_5_0_ from empresa_telefone telefones0_ where telefones0_.empresa_id=?
+15:33:31,165 INFO  [stdout] (default task-11) Hibernate: call next value for hibernate_sequence
+15:33:31,790 INFO  [stdout] (default task-11) Hibernate: insert into area_conhecimento (data_cadastro, data_ultima_alteracao, empresa_id, descricao, id) values (?, ?, ?, ?, ?)
+15:33:31,836 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-7) JBAS017535: Unregistered web context: /b7f4403f-d5f9-4130-bc9d-ece900b4ae0d
+15:33:31,852 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 50) JBAS011410: Stopping Persistence Unit (phase 2 of 2) Service 'b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war#performancePU'
+15:33:31,852 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 50) HHH000227: Running hbm2ddl schema export
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table area_conhecimento drop constraint FK_8nsngda8j31mvqual7fhll61h if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table area_conhecimento_assuntos drop constraint FK_cp7g03w89f3k0ofhess8y5otq if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table area_conhecimento_assuntos drop constraint FK_3x8rpjslh7g7xg6cs3s6ertpo if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table assunto drop constraint FK_2i28pt6b8vqxofe66fmmyqbdh if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table assunto drop constraint FK_212spr6xq3sb78xrgo7wo9lo0 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table candidato drop constraint FK_e3x92u68mve4rhu6gjfcyq49i if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table empresa_telefone drop constraint FK_q0t67urnv676v2b65mm7lo2o9 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table execucao_prova drop constraint FK_nv8jchtdys4n8sfw8itwwu6si if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table execucao_prova drop constraint FK_8q2hqqv0jfsdvw07s02v2c63p if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table execucao_prova drop constraint FK_tc1loaur9m05kbiwq6nuy4rtb if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table nivel_dificuldade drop constraint FK_puwlwwikev0k163m9gk1l1nv if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table prova drop constraint FK_3b3tgcjbr08f6s0maiu859r26 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table prova_questao drop constraint FK_c64ie7lwfs9du0ct5068cbtqi if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table prova_questao drop constraint FK_2kdlatplryqul7j12koetowjt if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao drop constraint FK_pqj13vh5rhk34yu07u2pn0h9f if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao drop constraint FK_mwqbcmmttiv3kkqwalispwed2 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao drop constraint FK_dw9fl7s2q415ll0nnstv04gyx if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_alternativa drop constraint FK_7egu4p07snhfnux6j5rrcilk3 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_alternativa drop constraint FK_ntryx9a4fitur4fpui4vt9cyo if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_alternativa_anexos drop constraint FK_w809g5j1i5oaiy7389g3wrhc if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_anexos drop constraint FK_e84lhccsdontgb2rkj1e620fi if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_assunto drop constraint FK_k71mpa0swpypyyjdgfo9hw5r5 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_assunto drop constraint FK_i6fuqy8hub0vq2nvoye80bvuf if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_gabarito drop constraint FK_920239r6u8vx7i6th2kcq9s81 if exists
+15:33:31,852 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: alter table questao_gabarito drop constraint FK_puh5tbnuq2wj7yt59f2b4sa73 if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table area_conhecimento if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table area_conhecimento_assuntos if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table assunto if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table candidato if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table empresa if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table empresa_telefone if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table execucao_prova if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table nivel_dificuldade if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table prova if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table prova_questao if exists
+15:33:31,868 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table questao if exists
+15:33:31,883 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table questao_alternativa if exists
+15:33:31,883 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table questao_alternativa_anexos if exists
+15:33:31,883 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table questao_anexos if exists
+15:33:31,883 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table questao_assunto if exists
+15:33:31,883 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop table questao_gabarito if exists
+15:33:31,883 INFO  [stdout] (ServerService Thread Pool -- 50) Hibernate: drop sequence hibernate_sequence
+15:33:31,883 INFO  [org.hibernate.tool.hbm2ddl.SchemaExport] (ServerService Thread Pool -- 50) HHH000230: Schema export complete
+15:33:31,883 INFO  [org.jboss.weld.deployer] (MSC service thread 1-5) JBAS016009: Stopping weld service for deployment b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war
+15:33:31,930 INFO  [org.jboss.as.jpa] (ServerService Thread Pool -- 50) JBAS011410: Stopping Persistence Unit (phase 1 of 2) Service 'b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war#performancePU'
+15:33:31,930 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-8) JBAS010409: Unbound data source [java:/performance]
+15:33:32,071 INFO  [org.jboss.as.server.deployment] (MSC service thread 1-3) JBAS015877: Stopped deployment b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war (runtime-name: b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war) in 238ms
+15:33:32,212 INFO  [org.jboss.as.repository] (management-handler-thread - 2) JBAS014901: Content removed from location C:\tools\wildfly-8.1.0.Final\standalone\data\content\50\091d0025054cd8b53f458263b0e0c727dedbe7\content
+15:33:32,212 INFO  [org.jboss.as.server] (management-handler-thread - 2) JBAS018558: Undeployed "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war" (runtime-name: "b7f4403f-d5f9-4130-bc9d-ece900b4ae0d.war")
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0, Time elapsed: 51.98 sec
+15:33:32,274 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) JBAS017532: Host default-host stopping
+15:33:32,274 INFO  [org.jboss.as.connector.subsystems.datasources] (MSC service thread 1-2) JBAS010409: Unbound data source [java:jboss/datasources/ExampleDS]
+15:33:32,290 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) JBAS017521: Undertow HTTP listener default suspending
+15:33:32,290 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) JBAS017520: Undertow HTTP listener default stopped, was bound to /127.0.0.1:8080
+15:33:32,290 INFO  [org.wildfly.extension.undertow] (MSC service thread 1-2) JBAS017506: Undertow 1.0.15.Final stopping
+15:33:32,321 INFO  [org.jboss.as.connector.deployers.jdbc] (MSC service thread 1-6) JBAS010418: Stopped Driver service with driver-name = h2
+15:33:32,368 INFO  [org.jboss.as] (MSC service thread 1-8) JBAS015950: WildFly 8.1.0.Final "Kenny" stopped in 49ms
+
+Results :
+
+Tests run: 2, Failures: 0, Errors: 0, Skipped: 0
+
+[INFO] 
+[INFO] --- maven-jar-plugin:2.4:jar (default-jar) @ principal ---
+[INFO] Building jar: C:\work\performance\target\principal-0.0.1-SNAPSHOT.jar
+[INFO] 
+[INFO] --- maven-install-plugin:2.4:install (default-install) @ principal ---
+[INFO] Installing C:\work\performance\target\principal-0.0.1-SNAPSHOT.jar to C:\Users\rodrigo.postai\.m2\repository\com\rp\performance\principal\0.0.1-SNAPSHOT\principal-0.0.1-SNAPSHOT.jar
+[INFO] Installing C:\work\performance\pom.xml to C:\Users\rodrigo.postai\.m2\repository\com\rp\performance\principal\0.0.1-SNAPSHOT\principal-0.0.1-SNAPSHOT.pom
+[INFO] ------------------------------------------------------------------------
+[INFO] BUILD SUCCESS
+[INFO] ------------------------------------------------------------------------
+[INFO] Total time: 1:00.352s
+[INFO] Finished at: Sat Nov 15 15:33:33 BRST 2014
+[INFO] Final Memory: 30M/266M
+[INFO] ------------------------------------------------------------------------

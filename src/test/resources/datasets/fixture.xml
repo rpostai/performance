@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+    <empresa id="1" cnpj="73801110000126" razao_social="POSTAI SA" nome_fantasia="Performance Company" cep="87030200" endereco="Rua Assunção" numero="65" bairro="Zona 07" municipio="Maringá" uf="PR"/>
+    <empresa_telefone ddd="44" numero="30289069" tipo_telefone="C" empresa_id="1"/>
+    <empresa_telefone ddd="44" numero="88171313" tipo_telefone="C" empresa_id="1"/>
+    <empresa_telefone ddd="44" numero="88110554" tipo_telefone="C" empresa_id="1"/>
+</dataset>
+

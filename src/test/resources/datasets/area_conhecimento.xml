@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<area_conhecimento id="1" descricao="Tecnologia da Informação" empresa_id="1" data_cadastro="2014-01-01"/>
+	<area_conhecimento id="2" descricao="Contabilidade" empresa_id="1" data_cadastro="2014-01-01"/>
+	<area_conhecimento id="3" descricao="Psicologia" empresa_id="1" data_cadastro="2014-01-01"/>
+</dataset>
+
