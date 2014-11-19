@@ -35,7 +35,7 @@ public class BaseEntity implements Serializable {
 	private Date dataUltimaAlteracao;
 
 	@ManyToOne
-	@JoinColumn(name = "empresa_id", nullable = false)
+	@JoinColumn(name = "empresa_id", insertable=false, updatable=false)
 	private Empresa empresa;
 
 	public Long getId() {

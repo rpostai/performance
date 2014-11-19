@@ -1,7 +1,25 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <dataset>
-	<area_conhecimento id="1" descricao="Tecnologia da Informação" empresa_id="1" data_cadastro="2014-01-01"/>
-	<area_conhecimento id="2" descricao="Contabilidade" empresa_id="1" data_cadastro="2014-01-01"/>
-	<area_conhecimento id="3" descricao="Psicologia" empresa_id="1" data_cadastro="2014-01-01"/>
+	<area_conhecimento id="100000" descricao="Tecnologia da Informação" empresa_id="1" data_cadastro="2014-01-01"/>
+	<area_conhecimento id="200000" descricao="Contabilidade" empresa_id="1" data_cadastro="2014-01-01"/>
+	<area_conhecimento id="300000" descricao="Psicologia" empresa_id="1" data_cadastro="2014-01-01"/>
+	
+	<assunto id="100000" data_cadastro="2014-01-01" descricao="Contabilidade Empresarial"/>
+	<area_conhecimento_assunto assunto_id="100000" area_conhecimento_id="200000"/>
+	
+	<assunto id="100001" data_cadastro="2014-01-01" descricao="Assunto Psicologico 1"/>
+	<assunto id="100002" data_cadastro="2014-01-01" descricao="Assunto Psicologico 2"/>
+	<assunto id="100003" data_cadastro="2014-01-01" descricao="Assunto Psicologico 3"/>
+	
+	<assunto id="100004" data_cadastro="2014-01-01" descricao="Assunto Psicologico 3.1"/>
+	<assunto id="100005" data_cadastro="2014-01-01" descricao="Assunto Psicologico 3.2"/>
+	
+	<assunto_assunto assunto_id="100003" assunto_filho_id="100004"/>
+	<assunto_assunto assunto_id="100003" assunto_filho_id="100005"/>
+	
+	<area_conhecimento_assunto assunto_id="100001" area_conhecimento_id="300000"/>
+	<area_conhecimento_assunto assunto_id="100002" area_conhecimento_id="300000"/>
+	<area_conhecimento_assunto assunto_id="100003" area_conhecimento_id="300000"/>
+	
 </dataset>
 
