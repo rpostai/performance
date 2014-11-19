@@ -4,7 +4,6 @@ import javax.ejb.Stateless;
 
 import com.rp.performance.domain.prova.AreaConhecimento;
 import com.rp.performance.repository.jpa.BaseRepository;
-import com.rp.performance.repository.prova.AreaConhecimentoRepository;
 
 @Stateless
 public class AreaConhecimentoRepositoryBean extends

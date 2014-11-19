@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<nivel_dificuldade id="100000" descricao="Fácil" data_cadastro="2014-01-01"/>
+	<nivel_dificuldade id="200000" descricao="Médio" data_cadastro="2014-01-01"/>
+	<nivel_dificuldade id="300000" descricao="Dificil" data_cadastro="2014-01-01"/>
+</dataset>
+

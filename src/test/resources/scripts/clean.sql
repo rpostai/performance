@@ -1,4 +1,5 @@
 SET REFERENTIAL_INTEGRITY FALSE;
+delete from nivel_dificuldade;
 delete from area_conhecimento_assunto;
 delete from assunto_assunto;
 delete from assunto;

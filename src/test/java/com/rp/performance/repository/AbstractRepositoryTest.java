@@ -21,8 +21,8 @@ import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.repository.jpa.BaseRepository;
 import com.rp.performance.repository.jpa.listener.RepositoryEntityListener;
+import com.rp.performance.repository.jpa.prova.AreaConhecimentoRepository;
 import com.rp.performance.repository.jpa.prova.AreaConhecimentoRepositoryBean;
-import com.rp.performance.repository.prova.AreaConhecimentoRepository;
 
 @RunWith(Arquillian.class)
 @CleanupUsingScript("clean.sql")
