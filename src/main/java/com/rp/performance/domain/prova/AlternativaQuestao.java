@@ -26,7 +26,8 @@ public class AlternativaQuestao extends BaseEntity {
 	private String descricao;
 
 	@ElementCollection
-	@CollectionTable(name = "questao_alternativa_anexos")
+	@CollectionTable(name = "questao_alternativa_anexos", joinColumns=@JoinColumn(name="questao_alternativa_id"))
+	@Column(name="anexo")
 	private Set<String> anexos;
 
 	public Questao getQuestao() {

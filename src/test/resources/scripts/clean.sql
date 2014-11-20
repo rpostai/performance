@@ -1,4 +1,10 @@
 SET REFERENTIAL_INTEGRITY FALSE;
+delete from questao_assunto;
+delete from questao_alternativa_anexos;
+delete from questao_anexos;
+delete from questao_alternativa;
+delete from questao_gabarito;
+delete from questao;
 delete from nivel_dificuldade;
 delete from area_conhecimento_assunto;
 delete from assunto_assunto;

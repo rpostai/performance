@@ -11,7 +11,7 @@ import com.rp.performance.repository.Repository;
 public abstract class BaseRepository<T> implements Repository<T> {
 
 	@PersistenceContext(unitName = "performancePU")
-	private EntityManager em;
+	protected EntityManager em;
 
 	private Class<T> clazz;
 

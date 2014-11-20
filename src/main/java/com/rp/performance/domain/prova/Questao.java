@@ -6,7 +6,9 @@ import java.util.Set;
 import javax.persistence.CascadeType;
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
+import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
+import javax.persistence.Embedded;
 import javax.persistence.Entity;
 import javax.persistence.EnumType;
 import javax.persistence.Enumerated;
@@ -30,13 +32,14 @@ public class Questao extends BaseEntity {
 
 	@ManyToMany
 	@JoinTable(name = "questao_assunto", joinColumns = @JoinColumn(name = "questao_id"), inverseJoinColumns = @JoinColumn(name = "assunto_id"))
-	private Set<Assunto> assuntos;
+	private Set<Assunto> assuntos = new HashSet<Assunto>();
 
 	@ManyToOne
-	@JoinColumn(name = "nivel_dificuldade_id", nullable=true)
+	@JoinColumn(name = "nivel_dificuldade_id", nullable = true)
 	private NivelDificuldade nivelDificuldade;
 
-	@Enumerated(EnumType.STRING)
+	@Convert(attributeName = "tipo_questao", converter = TipoQuestaoConverter.class)
+	@Column(name = "tipo_questao", length = 1, nullable = false)
 	private TipoQuestao tipoQuestao;
 
 	@Lob
@@ -45,6 +48,7 @@ public class Questao extends BaseEntity {
 
 	@ElementCollection
 	@CollectionTable(name = "questao_anexos", joinColumns = @JoinColumn(name = "questao_id"))
+	@Column(name = "anexo")
 	private Set<String> anexos;
 
 	@OneToMany(mappedBy = "questao", cascade = CascadeType.ALL)
@@ -130,6 +134,10 @@ public class Questao extends BaseEntity {
 			return x.getId().equals(x.getId())
 					|| x.getDescricao().equals(alternativa.getDescricao());
 		});
+	}
+
+	public void addAssunto(Assunto assunto) {
+		this.assuntos.add(assunto);
 	}
 
 	@Override
