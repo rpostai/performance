@@ -49,7 +49,7 @@ public class Questao extends BaseEntity {
 	@ElementCollection
 	@CollectionTable(name = "questao_anexos", joinColumns = @JoinColumn(name = "questao_id"))
 	@Column(name = "anexo")
-	private Set<String> anexos;
+	private Set<String> anexos = new HashSet<String>();
 
 	@OneToMany(mappedBy = "questao", cascade = CascadeType.ALL)
 	private Set<AlternativaQuestao> alternativas = new HashSet<AlternativaQuestao>();
@@ -102,8 +102,8 @@ public class Questao extends BaseEntity {
 		return anexos;
 	}
 
-	public void setAnexos(Set<String> anexos) {
-		this.anexos = anexos;
+	public void addAnexo(String anexo) {
+		this.anexos.add(anexo);
 	}
 
 	public Set<AlternativaQuestao> getAlternativas() {

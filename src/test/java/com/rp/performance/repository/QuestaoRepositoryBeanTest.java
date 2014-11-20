@@ -38,6 +38,9 @@ public class QuestaoRepositoryBeanTest extends AbstractRepositoryTest {
 		q1.addAssunto(arquitetura);
 		q1.setTipoQuestao(TipoQuestao.ESCOLHA_UNICA);
 		q1.setQuestao("Quais das alternativas abaixo fazem parte dos padrões de projetos GoF?");
+		
+		q1.addAnexo("anexo1");
+		q1.addAnexo("anexo2");
 
 		AlternativaQuestao a = new AlternativaQuestao();
 		a.setDescricao("Singleton, Composite, MVC");
@@ -86,6 +89,7 @@ public class QuestaoRepositoryBeanTest extends AbstractRepositoryTest {
 		Assert.assertEquals(5, q.getAlternativas().size());
 		Assert.assertEquals(1, q.getGabarito().size());
 		Assert.assertEquals(2, q.getAnexos().size());
+		
 	}
 
 }
