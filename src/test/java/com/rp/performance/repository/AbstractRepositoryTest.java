@@ -23,6 +23,7 @@ import com.rp.performance.repository.jpa.BaseRepository;
 import com.rp.performance.repository.jpa.listener.RepositoryEntityListener;
 import com.rp.performance.repository.jpa.prova.AreaConhecimentoRepository;
 import com.rp.performance.repository.jpa.prova.AreaConhecimentoRepositoryBean;
+import com.rp.performance.repository.jpa.prova.execucao.CandidatoRepository;
 
 @RunWith(Arquillian.class)
 @CleanupUsingScript("clean.sql")
@@ -44,6 +45,7 @@ public abstract class AbstractRepositoryTest {
 				.addPackage(AreaConhecimentoRepository.class.getPackage())
 				.addPackage(RepositoryEntityListener.class.getPackage())
 				.addPackage(AreaConhecimentoRepositoryBean.class.getPackage())
+				.addPackage(CandidatoRepository.class.getPackage())
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
 				.addAsResource("test-persistence.xml","META-INF/persistence.xml")
 				.addAsWebInfResource("performance-ds.xml");

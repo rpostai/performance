@@ -22,15 +22,21 @@ public class Candidato extends BaseEntity {
 	@Column(name = "cpf", length = 11, nullable = false)
 	@Size(min = 11, max = 11)
 	private String cpf;
-	
-	
-	
+
 	public String getNome() {
 		return nome;
 	}
 
 	public void setNome(String nome) {
 		this.nome = nome;
+	}
+
+	public String getCpf() {
+		return cpf;
+	}
+
+	public void setCpf(String cpf) {
+		this.cpf = cpf;
 	}
 
 	@Override

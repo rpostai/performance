@@ -1,4 +1,5 @@
 SET REFERENTIAL_INTEGRITY FALSE;
+delete from candidato;
 delete from questao_assunto;
 delete from questao_alternativa_anexos;
 delete from questao_anexos;
