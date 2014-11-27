@@ -1,11 +1,17 @@
 package com.rp.performance.domain.prova.execucao;
 
+import java.security.NoSuchAlgorithmException;
 import java.util.Date;
+import java.util.HashSet;
+import java.util.Set;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
+import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
@@ -13,11 +19,14 @@ import javax.persistence.UniqueConstraint;
 
 import com.rp.performance.domain.BaseEntity;
 import com.rp.performance.domain.prova.Prova;
+import com.rp.performance.services.GeradorHash;
 
 @Entity
 @Table(name = "execucao_prova", uniqueConstraints = { @UniqueConstraint(columnNames = {
 		"candidato_id", "prova_id", "voucher" }) })
 public class ExecucaoProva extends BaseEntity {
+
+	private static final String SALT = "94fyy4nfff4%##Fdujkjjfjfjsqee";
 
 	@OneToOne
 	@JoinColumn(name = "candidato_id")
@@ -43,7 +52,10 @@ public class ExecucaoProva extends BaseEntity {
 
 	@Column(name = "data_conclusao")
 	private Date dataConclusao;
-
+	
+	@OneToMany(cascade=CascadeType.ALL, mappedBy="execucaoProva")
+	private Set<ExecucaoProvaResposta> respostas = new HashSet<ExecucaoProvaResposta>();
+	
 	public Candidato getCandidato() {
 		return candidato;
 	}
@@ -62,10 +74,6 @@ public class ExecucaoProva extends BaseEntity {
 
 	public String getVoucher() {
 		return voucher;
-	}
-
-	public void setVoucher(String voucher) {
-		this.voucher = voucher;
 	}
 
 	public Date getDataAbertura() {
@@ -98,6 +106,33 @@ public class ExecucaoProva extends BaseEntity {
 
 	public void setDataConclusao(Date dataConclusao) {
 		this.dataConclusao = dataConclusao;
+	}
+
+	@PrePersist
+	public void prePersist() throws Exception {
+		this.voucher = gerarCodigoVoucher(candidato, prova, dataAbertura);
+	}
+
+	private String gerarCodigoVoucher(Candidato candidato, Prova prova,
+			Date dataAbertura) throws Exception {
+		try {
+			String aux = candidato.getCpf() + prova.getId()
+					+ dataAbertura.getTime() + SALT;
+			return GeradorHash.gerarHash(aux);
+		} catch (NoSuchAlgorithmException e) {
+			throw new Exception("Erro ao gerar voucher", e);
+		}
+	}
+
+	public boolean isVoucherValido() throws Exception {
+		String voucher = gerarCodigoVoucher(this.candidato, this.prova,
+				this.dataAbertura);
+		return this.voucher.equals(voucher);
+	}
+	
+	public void addResposta(ExecucaoProvaResposta resposta) {
+		resposta.setExecucaoProva(this);
+		this.respostas.add(resposta);
 	}
 
 	@Override
