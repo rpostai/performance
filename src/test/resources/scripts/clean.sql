@@ -1,4 +1,5 @@
 SET REFERENTIAL_INTEGRITY FALSE;
+delete from execucao_prova;
 delete from prova_questao;
 delete from prova;
 delete from candidato;
