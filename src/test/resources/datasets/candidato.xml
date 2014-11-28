@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<dataset>
+	<candidato id="100000" nome="Rodrigo Postai" cpf="02644103940" data_cadastro="2014-01-01"/>	
+	<candidato id="100001" nome="Fernanda Postai" cpf="02644103941" data_cadastro="2014-01-01"/>
+	<candidato id="100002" nome="Eduardo Postai" cpf="02644103942" data_cadastro="2014-01-01"/>
+</dataset>
+

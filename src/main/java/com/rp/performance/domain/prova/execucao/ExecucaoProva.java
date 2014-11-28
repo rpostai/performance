@@ -36,7 +36,7 @@ public class ExecucaoProva extends BaseEntity {
 	@JoinColumn(name = "prova_id")
 	private Prova prova;
 
-	@Column(name = "voucher", length = 30, unique = true, updatable = false)
+	@Column(name = "voucher", length = 64, unique = true, updatable = false)
 	private String voucher;
 
 	@Column(name = "data_abertura", nullable = false)

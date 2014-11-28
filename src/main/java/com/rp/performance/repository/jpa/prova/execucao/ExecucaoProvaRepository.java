@@ -10,7 +10,7 @@ import com.rp.performance.repository.Repository;
 
 public interface ExecucaoProvaRepository extends Repository<ExecucaoProva> {
 
-	void gerarVoucher(Candidato candidato, Prova prova,
+	String gerarVoucher(Candidato candidato, Prova prova,
 			Date dataAbertura, Date dataMaximaExecucao, Integer duracaoProva);
 	
 	Optional<ExecucaoProva> recuperarProva(String voucher);

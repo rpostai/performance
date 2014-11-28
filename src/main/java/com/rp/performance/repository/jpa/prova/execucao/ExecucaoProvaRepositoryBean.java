@@ -24,7 +24,7 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 	}
 
 	@Override
-	public void gerarVoucher(Candidato candidato, Prova prova,
+	public String gerarVoucher(Candidato candidato, Prova prova,
 			Date dataAbertura, Date dataMaximaExecucao, Integer duracaoProva) {
 		Optional<ExecucaoProva> voucher = existeVoucherGeradoEmAberto(
 				candidato, prova);
@@ -37,8 +37,11 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 			exec.setDataValidade(dataMaximaExecucao);
 
 			em.persist(exec);
-
+			
+			return exec.getVoucher();
 		}
+		
+		return null;
 	}
 
 	private Optional<ExecucaoProva> existeVoucherGeradoEmAberto(
@@ -48,7 +51,7 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 						"select o from ExecucaoProva o where o.candidato = :candidato and o.prova = :prova and o.dataInicio is null and o.dataConclusao is null",
 						ExecucaoProva.class);
 		tq.setParameter("prova", prova);
-		tq.setParameter("candidato", prova);
+		tq.setParameter("candidato", candidato);
 		List<ExecucaoProva> vouchers = tq.getResultList();
 		if (CollectionUtils.isNotEmpty(vouchers)) {
 			return Optional.of(vouchers.get(0));
