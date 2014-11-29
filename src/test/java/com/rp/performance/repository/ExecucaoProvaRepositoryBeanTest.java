@@ -56,4 +56,40 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		Assert.assertEquals(rodrigo.getId(), ex.get().getCandidato().getId());
 		Assert.assertEquals(provaJee.getId(), ex.get().getProva().getId());
 	}
+	
+	@Test
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	public void deveIniciarUmaProvaComSucesso() {
+		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
+		Assert.assertTrue(ex.isPresent());
+		
+		repository.iniciarProva("98492727478874");
+		
+		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
+		Assert.assertNotNull(exec1.getDataInicio());
+	}
+	
+	@Test(expected=RuntimeException.class)
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	public void deveFalharAoTentarInicializarUmaProvaNaoIniciada() {
+		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
+		Assert.assertTrue(ex.isPresent());
+		repository.finalizarProva("98492727478874");
+	}
+	
+	@Test
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	public void deveFinalizarumaProvaComSucesso() {
+		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
+		Assert.assertTrue(ex.isPresent());
+		repository.iniciarProva("98492727478874");
+		repository.finalizarProva("98492727478874");
+		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
+		Assert.assertNotNull(exec1.getDataConclusao());
+	}
+	
+	
+	
+	
+	
 }

@@ -81,7 +81,12 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 	public void iniciarProva(String voucher) {
 		Optional<ExecucaoProva> execucao = recuperarProva(voucher);
 		if (execucao.isPresent()) {
-			execucao.get().setDataInicio(Calendar.getInstance().getTime());
+			if (execucao.get().getDataInicio() == null) {
+				execucao.get().setDataInicio(Calendar.getInstance().getTime());	
+			} else {
+				throw new RuntimeException("Esta prova já foi iniciada");
+			}
+			
 		} else {
 			throw new RuntimeException("Voucher não encontrado");
 		}
@@ -91,6 +96,12 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 	public void finalizarProva(String voucher) {
 		Optional<ExecucaoProva> execucao = recuperarProva(voucher);
 		if (execucao.isPresent()) {
+			if (execucao.get().getDataInicio() == null) {
+				throw new RuntimeException("Prova não iniciada. A mesma não pode ser finalizada");
+			}
+			if (execucao.get().getDataConclusao() != null) {
+				throw new RuntimeException("Prova já foi finalizada. Não é possível finalizá-la");
+			}
 			execucao.get().setDataConclusao(Calendar.getInstance().getTime());
 		} else {
 			throw new RuntimeException("Voucher não encontrado");
