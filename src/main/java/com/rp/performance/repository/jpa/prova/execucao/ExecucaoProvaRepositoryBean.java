@@ -1,6 +1,5 @@
 package com.rp.performance.repository.jpa.prova.execucao;
 
-import java.util.Calendar;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
@@ -10,6 +9,7 @@ import javax.persistence.TypedQuery;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.rp.performance.domain.exceptions.VoucherNaoEncontradoException;
 import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.domain.prova.execucao.ExecucaoProva;
@@ -37,10 +37,10 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 			exec.setDataValidade(dataMaximaExecucao);
 
 			em.persist(exec);
-			
+
 			return exec.getVoucher();
 		}
-		
+
 		return null;
 	}
 
@@ -78,34 +78,24 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 	}
 
 	@Override
-	public void iniciarProva(String voucher) {
+	public void iniciarExecucaoProva(String voucher) {
 		Optional<ExecucaoProva> execucao = recuperarProva(voucher);
 		if (execucao.isPresent()) {
-			if (execucao.get().getDataInicio() == null) {
-				execucao.get().setDataInicio(Calendar.getInstance().getTime());	
-			} else {
-				throw new RuntimeException("Esta prova já foi iniciada");
-			}
-			
+			ExecucaoProva exec = execucao.get();
+			exec.iniciarExecucao();
 		} else {
-			throw new RuntimeException("Voucher não encontrado");
+			throw new VoucherNaoEncontradoException();
 		}
 	}
 
 	@Override
-	public void finalizarProva(String voucher) {
+	public void finalizarExecucaoProva(String voucher) {
 		Optional<ExecucaoProva> execucao = recuperarProva(voucher);
 		if (execucao.isPresent()) {
-			if (execucao.get().getDataInicio() == null) {
-				throw new RuntimeException("Prova não iniciada. A mesma não pode ser finalizada");
-			}
-			if (execucao.get().getDataConclusao() != null) {
-				throw new RuntimeException("Prova já foi finalizada. Não é possível finalizá-la");
-			}
-			execucao.get().setDataConclusao(Calendar.getInstance().getTime());
+			ExecucaoProva exec = execucao.get();
+			exec.finalizarExecucao();
 		} else {
-			throw new RuntimeException("Voucher não encontrado");
+			throw new VoucherNaoEncontradoException();
 		}
 	}
-
 }

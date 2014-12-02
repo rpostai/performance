@@ -10,6 +10,8 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
+import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
 import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.domain.prova.execucao.ExecucaoProva;
@@ -60,13 +62,26 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 	@Test
 	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
 	public void deveIniciarUmaProvaComSucesso() {
+		
+		setDataAtual("2014-01-02 14:00:00");
+		
 		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
+		
 		Assert.assertTrue(ex.isPresent());
 		
-		repository.iniciarProva("98492727478874");
+		repository.iniciarExecucaoProva("98492727478874");
 		
 		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
 		Assert.assertNotNull(exec1.getDataInicio());
+	}
+	
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	@Test(expected=PrazoValidadeInvalidoException.class)
+	public void naoDeveIniciarUmaProvaPoisTemPrazoVencido() {
+		setDataAtual("2014-01-04 14:00:00");
+		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
+		Assert.assertTrue(ex.isPresent());
+		repository.iniciarExecucaoProva("98492727478874");
 	}
 	
 	@Test(expected=RuntimeException.class)
@@ -74,16 +89,36 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 	public void deveFalharAoTentarInicializarUmaProvaNaoIniciada() {
 		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
 		Assert.assertTrue(ex.isPresent());
-		repository.finalizarProva("98492727478874");
+		repository.finalizarExecucaoProva("98492727478874");
 	}
 	
 	@Test
 	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
 	public void deveFinalizarumaProvaComSucesso() {
+		setDataAtual("2014-01-02 16:00:00");
 		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
 		Assert.assertTrue(ex.isPresent());
-		repository.iniciarProva("98492727478874");
-		repository.finalizarProva("98492727478874");
+		repository.iniciarExecucaoProva("98492727478874");
+		repository.finalizarExecucaoProva("98492727478874");
+		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
+		Assert.assertNotNull(exec1.getDataConclusao());
+	}
+	
+	@Test(expected=ProvaJaFinalizadaException.class)
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	public void naoDeveFinalizarUmaProvaPoisJaFoiFinalizada() {
+		setDataAtual("2014-01-02 15:00:00");
+		ExecucaoProva e = em.find(ExecucaoProva.class, 100000l);
+		e.iniciarExecucao();
+		setDataAtual("2014-01-02 15:30:00");
+		e.finalizarExecucao();
+		em.merge(e);
+		em.flush();
+		
+		Optional<ExecucaoProva> ex = repository.recuperarProva("98492727478874");
+		Assert.assertTrue(ex.isPresent());
+		setDataAtual("2014-01-02 17:00:00");
+		repository.finalizarExecucaoProva("98492727478874");
 		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
 		Assert.assertNotNull(exec1.getDataConclusao());
 	}

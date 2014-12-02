@@ -38,7 +38,7 @@
 	
 	<prova_questao prova_id="100001" questao_id="100000"/>
 	
-	<execucao_prova id="100000" voucher="98492727478874" data_cadastro="2014-01-01" prova_id="100001" candidato_id="100001" data_abertura="2014-01-01" data_validade="2014-01-01"/> 
+	<execucao_prova id="100000" voucher="98492727478874" data_cadastro="2014-01-01" prova_id="100001" candidato_id="100001" data_abertura="2014-01-01" data_validade="2014-01-03"/> 
 	
 </dataset>
 

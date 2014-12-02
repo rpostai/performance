@@ -1,5 +1,6 @@
 package com.rp.performance.repository.jpa.prova.execucao;
 
+import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -9,7 +10,10 @@ import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import com.rp.performance.domain.exceptions.TempoDuracaoProvaAtingidoException;
+import com.rp.performance.domain.exceptions.VoucherNaoEncontradoException;
 import com.rp.performance.domain.prova.AlternativaQuestao;
+import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.domain.prova.Questao;
 import com.rp.performance.domain.prova.execucao.ExecucaoProva;
 import com.rp.performance.domain.prova.execucao.ExecucaoProvaResposta;
@@ -38,33 +42,40 @@ public class ExecucaoProvaRespostaRepositoryBean extends
 		Optional<ExecucaoProva> exec = execucaoProvaRepository
 				.recuperarProva(voucher);
 		if (!exec.isPresent()) {
-			throw new RuntimeException(
-					"Prova não encontrada para o voucher informado");
+			throw new VoucherNaoEncontradoException();
 		} else {
-			Optional<ExecucaoProvaResposta> respostaSalva = getExecucaoProvaResposta(
-					exec.get().getProva().getId(), questaoId);
-			if (!respostaSalva.isPresent()) {
-				ExecucaoProvaResposta epr = new ExecucaoProvaResposta();
-				epr.setExecucaoProva(exec.get());
-				
-				Questao q = questaoRepository.get(questaoId);
-				epr.setQuestao(q);
-				
-				epr.setRespostaAberta(resposta);
-				
-				List<AlternativaQuestao> alternativas = q.getAlternativas().stream().filter(questaoAlternativa -> {
-					return alternativa.stream().filter(id -> {
-						return questaoAlternativa.getId().equals(id);
-					}).findFirst().isPresent();
-				}).collect(Collectors.toList());
-				
-				epr.setRespostas(alternativas);
-				
-				salvar(epr);
+			
+			Prova prova = exec.get().getProva();
+			Date dataInicio = exec.get().getDataInicio();
+			
+			if (prova.isTempoLimiteValido(dataInicio)) {
+				Optional<ExecucaoProvaResposta> respostaSalva = getExecucaoProvaResposta(
+						exec.get().getProva().getId(), questaoId);
+				if (!respostaSalva.isPresent()) {
+					ExecucaoProvaResposta epr = new ExecucaoProvaResposta();
+					epr.setExecucaoProva(exec.get());
+					
+					Questao q = questaoRepository.get(questaoId);
+					epr.setQuestao(q);
+					
+					epr.setRespostaAberta(resposta);
+					
+					List<AlternativaQuestao> alternativas = q.getAlternativas().stream().filter(questaoAlternativa -> {
+						return alternativa.stream().filter(id -> {
+							return questaoAlternativa.getId().equals(id);
+						}).findFirst().isPresent();
+					}).collect(Collectors.toList());
+					
+					epr.setRespostas(alternativas);
+					
+					salvar(epr);
+				}	
+			} else {
+				throw new TempoDuracaoProvaAtingidoException();
 			}
 		}
 	}
-
+	
 	private Optional<ExecucaoProvaResposta> getExecucaoProvaResposta(
 			Long execucaoProvaId, Long questaoId) {
 		TypedQuery<ExecucaoProvaResposta> tq = em

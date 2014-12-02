@@ -1,6 +1,7 @@
 package com.rp.performance.domain.prova.execucao;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
@@ -18,6 +19,11 @@ import javax.persistence.TemporalType;
 import javax.persistence.UniqueConstraint;
 
 import com.rp.performance.domain.BaseEntity;
+import com.rp.performance.domain.DateUtils;
+import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
+import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
+import com.rp.performance.domain.exceptions.ProvaJaIniciadaException;
+import com.rp.performance.domain.exceptions.ProvaNaoIniciadaException;
 import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.services.GeradorHash;
 
@@ -52,10 +58,10 @@ public class ExecucaoProva extends BaseEntity {
 
 	@Column(name = "data_conclusao")
 	private Date dataConclusao;
-	
-	@OneToMany(cascade=CascadeType.ALL, mappedBy="execucaoProva")
+
+	@OneToMany(cascade = CascadeType.ALL, mappedBy = "execucaoProva")
 	private Set<ExecucaoProvaResposta> respostas = new HashSet<ExecucaoProvaResposta>();
-	
+
 	public Candidato getCandidato() {
 		return candidato;
 	}
@@ -96,16 +102,36 @@ public class ExecucaoProva extends BaseEntity {
 		return dataInicio;
 	}
 
-	public void setDataInicio(Date dataInicio) {
-		this.dataInicio = dataInicio;
+	public void iniciarExecucao() {
+		if (isPrazoExecucaoValido()) {
+			if (!isProvaIniciada()) {
+				dataInicio = DateUtils.getDate();
+			} else {
+				throw new ProvaJaIniciadaException();
+			}
+		} else {
+			throw new PrazoValidadeInvalidoException();
+		}
 	}
 
 	public Date getDataConclusao() {
 		return dataConclusao;
 	}
 
-	public void setDataConclusao(Date dataConclusao) {
-		this.dataConclusao = dataConclusao;
+	public void finalizarExecucao() {
+		if (isPrazoExecucaoValido()) {
+			if (isProvaIniciada()) {
+				if (!isProvaFinalizada()) {
+					this.dataConclusao = DateUtils.getDate();
+				} else {
+					throw new ProvaJaFinalizadaException();
+				}
+			} else {
+				throw new ProvaNaoIniciadaException();
+			}
+		} else {
+			throw new PrazoValidadeInvalidoException();
+		}
 	}
 
 	@PrePersist
@@ -129,10 +155,24 @@ public class ExecucaoProva extends BaseEntity {
 				this.dataAbertura);
 		return this.voucher.equals(voucher);
 	}
-	
+
 	public void addResposta(ExecucaoProvaResposta resposta) {
 		resposta.setExecucaoProva(this);
 		this.respostas.add(resposta);
+	}
+
+	public boolean isPrazoExecucaoValido() {
+		Date agora = DateUtils.getDate();
+		return getDataAbertura().compareTo(agora) <= 0
+				&& getDataValidade().compareTo(agora) > 0;
+	}
+
+	public boolean isProvaIniciada() {
+		return dataInicio != null;
+	}
+
+	public boolean isProvaFinalizada() {
+		return dataConclusao != null;
 	}
 
 	@Override

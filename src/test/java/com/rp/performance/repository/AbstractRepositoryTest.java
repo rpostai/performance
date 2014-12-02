@@ -12,6 +12,7 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 
 import com.rp.performance.domain.BaseEntity;
+import com.rp.performance.domain.exceptions.BaseException;
 import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.repository.jpa.BaseRepository;
@@ -24,10 +25,10 @@ import com.rp.performance.services.GeradorHash;
 @RunWith(Arquillian.class)
 @CleanupUsingScript("clean.sql")
 public abstract class AbstractRepositoryTest {
-	
-	@PersistenceContext(unitName="performancePU")
+
+	@PersistenceContext(unitName = "performancePU")
 	protected EntityManager em;
-	
+
 	@Deployment
 	public static WebArchive createDeployment() {
 		return ShrinkWrap
@@ -43,9 +44,15 @@ public abstract class AbstractRepositoryTest {
 				.addPackage(AreaConhecimentoRepositoryBean.class.getPackage())
 				.addPackage(CandidatoRepository.class.getPackage())
 				.addPackage(GeradorHash.class.getPackage())
+				.addPackage(BaseException.class.getPackage())
 				.addAsManifestResource(EmptyAsset.INSTANCE, "beans.xml")
-				.addAsResource("test-persistence.xml","META-INF/persistence.xml")
+				.addAsResource("test-persistence.xml",
+						"META-INF/persistence.xml")
 				.addAsWebInfResource("performance-ds.xml");
+	}
+
+	protected void setDataAtual(String data) {
+		System.setProperty("DATA", data);
 	}
 
 }

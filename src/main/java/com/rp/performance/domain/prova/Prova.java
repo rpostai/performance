@@ -1,5 +1,7 @@
 package com.rp.performance.domain.prova;
 
+import java.util.Calendar;
+import java.util.Date;
 import java.util.HashSet;
 import java.util.Set;
 
@@ -16,6 +18,7 @@ import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
 import com.rp.performance.domain.BaseEntity;
+import com.rp.performance.domain.DateUtils;
 
 @Entity
 @Table(name = "prova")
@@ -80,5 +83,17 @@ public class Prova extends BaseEntity {
 	public void setAreaConhecimento(AreaConhecimento areaConhecimento) {
 		this.areaConhecimento = areaConhecimento;
 	}
+	
+	public boolean isTempoLimiteValido(Date dataInicio) {
+		Calendar agora = DateUtils.getCalendar();
+		
+		Calendar dataFinalPrevista = DateUtils.getCalendar();
+		dataFinalPrevista.setTimeInMillis(dataInicio.getTime());
+		
+		dataFinalPrevista.add(Calendar.MINUTE, getTempoDuracaoEmMinutos());
+		
+		return dataFinalPrevista.compareTo(agora) > 0;
+	}
+	
 
 }
