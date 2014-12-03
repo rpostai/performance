@@ -15,13 +15,12 @@
 		nivel_dificuldade_id="200000" questao="O que significa JSON?" data_cadastro="2014-01-01"/>
 		
 	<questao_assunto questao_id="100000" assunto_id="100000"/>	
-	
 	<questao_anexos questao_id="100000" anexo="arquivo1.json"/>
 	<questao_anexos questao_id="100000" anexo="arquivo2.json"/>
-	
 	<questao_alternativa id="100000" questao_id="100000" descricao="Javascript Object Notation" data_cadastro="2014-01-01"/>
+	<!-- 
 	<questao_alternativa_anexos questao_alternativa_id="100000" anexo="exemplo.mp3"/>
-	
+	 -->
 	<questao_alternativa id="200000" questao_id="100000" descricao="Java Object Notation" data_cadastro="2014-01-01"/>
 	<questao_alternativa id="300000" questao_id="100000" descricao="Javascript Oriented Notation" data_cadastro="2014-01-01"/>
 	<questao_alternativa id="400000" questao_id="100000" descricao="Javascript" data_cadastro="2014-01-01"/>

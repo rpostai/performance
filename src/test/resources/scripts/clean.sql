@@ -4,7 +4,7 @@ delete from prova_questao;
 delete from prova;
 delete from candidato;
 delete from questao_assunto;
-delete from questao_alternativa_anexos;
+-- delete from questao_alternativa_anexos;
 delete from questao_anexos;
 delete from questao_alternativa;
 delete from questao_gabarito;

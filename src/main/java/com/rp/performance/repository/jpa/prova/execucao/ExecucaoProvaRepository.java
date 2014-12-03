@@ -15,7 +15,7 @@ public interface ExecucaoProvaRepository extends Repository<ExecucaoProva> {
 	
 	Optional<ExecucaoProva> recuperarProva(String voucher);
 	
-	void iniciarExecucaoProva(String voucher);
+	Prova iniciarExecucaoProva(String voucher);
 	
 	void finalizarExecucaoProva(String voucher);
 	

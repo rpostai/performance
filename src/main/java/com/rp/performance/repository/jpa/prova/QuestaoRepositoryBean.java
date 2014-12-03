@@ -29,9 +29,9 @@ public class QuestaoRepositoryBean extends BaseRepository<Questao> implements
 		sb.append("select distinct q from Questao q ");
 		sb.append("   left join fetch q.assuntos assuntos");
 		sb.append("   left join fetch q.alternativas alt");
-		sb.append("   left join fetch alt.anexos");
+		// sb.append("   left join fetch alt.anexo");
 		sb.append("   left join fetch q.gabarito ");
-		sb.append("   left join fetch q.anexos ");
+		//sb.append("   left join fetch q.anexo ");
 		sb.append("   where 1 = 1 ");
 
 		if (areaConhecimento != null) {

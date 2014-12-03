@@ -20,7 +20,7 @@ public class ProvaRepositoryBean extends BaseRepository<Prova> implements
 		sb.append("select distinct p from Prova p ");
 		sb.append("  join fetch p.questoes q");
 		sb.append("  left join fetch q.alternativas");
-		sb.append("  left join fetch q.anexos");
+//		sb.append("  left join fetch q.anexo");
 		sb.append(" where p.id = :id");
 
 		TypedQuery<Prova> list = em.createQuery(sb.toString(), Prova.class);

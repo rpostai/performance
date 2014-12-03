@@ -1,6 +1,7 @@
 package com.rp.performance.domain.prova;
 
-import java.util.Set;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CollectionTable;
 import javax.persistence.Column;
@@ -25,10 +26,10 @@ public class AlternativaQuestao extends BaseEntity {
 	@Lob
 	private String descricao;
 
-	@ElementCollection
-	@CollectionTable(name = "questao_alternativa_anexos", joinColumns=@JoinColumn(name="questao_alternativa_id"))
-	@Column(name="anexo")
-	private Set<String> anexos;
+	// @ElementCollection
+	// @CollectionTable(name = "questao_alternativa_anexos", joinColumns =
+	// @JoinColumn(name = "questao_alternativa_id"))
+	// List<String> anexo = new ArrayList<>();
 
 	public Questao getQuestao() {
 		return questao;
@@ -46,18 +47,44 @@ public class AlternativaQuestao extends BaseEntity {
 		this.descricao = descricao;
 	}
 
-	public Set<String> getAnexos() {
-		return anexos;
-	}
-
-	public void setAnexos(Set<String> anexos) {
-		this.anexos = anexos;
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((descricao == null) ? 0 : descricao.hashCode());
+		result = prime * result + ((questao == null) ? 0 : questao.hashCode());
+		return result;
 	}
 
 	@Override
-	public String toString() {
-		return "AlternativaQuestao [questao=" + questao + ", descricao="
-				+ descricao + ", anexos=" + anexos + "]";
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		AlternativaQuestao other = (AlternativaQuestao) obj;
+		if (descricao == null) {
+			if (other.descricao != null)
+				return false;
+		} else if (!descricao.equals(other.descricao))
+			return false;
+		if (questao == null) {
+			if (other.questao != null)
+				return false;
+		} else if (!questao.equals(other.questao))
+			return false;
+		return true;
 	}
+
+	// public List<String> getAnexos() {
+	// return anexo;
+	// }
+	//
+	// public void addAnexo(String anexo) {
+	// this.anexo.add(anexo);
+	// }
 
 }

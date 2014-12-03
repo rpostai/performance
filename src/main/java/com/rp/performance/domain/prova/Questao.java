@@ -1,6 +1,9 @@
 package com.rp.performance.domain.prova;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashSet;
+import java.util.List;
 import java.util.Set;
 
 import javax.persistence.CascadeType;
@@ -8,10 +11,7 @@ import javax.persistence.CollectionTable;
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.ElementCollection;
-import javax.persistence.Embedded;
 import javax.persistence.Entity;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.Lob;
@@ -48,11 +48,10 @@ public class Questao extends BaseEntity {
 
 	@ElementCollection
 	@CollectionTable(name = "questao_anexos", joinColumns = @JoinColumn(name = "questao_id"))
-	@Column(name = "anexo")
-	private Set<String> anexos = new HashSet<String>();
+	private List<String> anexo = new ArrayList<>();
 
 	@OneToMany(mappedBy = "questao", cascade = CascadeType.ALL)
-	private Set<AlternativaQuestao> alternativas = new HashSet<AlternativaQuestao>();
+	private List<AlternativaQuestao> alternativas = new ArrayList<AlternativaQuestao>();
 
 	@OneToMany
 	@JoinTable(name = "questao_gabarito", joinColumns = @JoinColumn(name = "questao_id"), inverseJoinColumns = @JoinColumn(name = "questao_alternativa_id"))
@@ -98,16 +97,16 @@ public class Questao extends BaseEntity {
 		this.questao = questao;
 	}
 
-	public Set<String> getAnexos() {
-		return anexos;
+	public List<String> getAnexos() {
+		return Collections.unmodifiableList(anexo);
 	}
 
 	public void addAnexo(String anexo) {
-		this.anexos.add(anexo);
+		this.anexo.add(anexo);
 	}
 
-	public Set<AlternativaQuestao> getAlternativas() {
-		return alternativas;
+	public List<AlternativaQuestao> getAlternativas() {
+		return Collections.unmodifiableList(alternativas);
 	}
 
 	public void addAlternativa(AlternativaQuestao alternativa) {
@@ -146,7 +145,7 @@ public class Questao extends BaseEntity {
 		int result = 1;
 		result = prime * result
 				+ ((alternativas == null) ? 0 : alternativas.hashCode());
-		result = prime * result + ((anexos == null) ? 0 : anexos.hashCode());
+		result = prime * result + ((anexo == null) ? 0 : anexo.hashCode());
 		result = prime
 				* result
 				+ ((areaConhecimento == null) ? 0 : areaConhecimento.hashCode());
@@ -175,10 +174,10 @@ public class Questao extends BaseEntity {
 				return false;
 		} else if (!alternativas.equals(other.alternativas))
 			return false;
-		if (anexos == null) {
-			if (other.anexos != null)
+		if (anexo == null) {
+			if (other.anexo != null)
 				return false;
-		} else if (!anexos.equals(other.anexos))
+		} else if (!anexo.equals(other.anexo))
 			return false;
 		if (areaConhecimento == null) {
 			if (other.areaConhecimento != null)
@@ -210,7 +209,7 @@ public class Questao extends BaseEntity {
 		return "Questao [areaConhecimento=" + areaConhecimento + ", assuntos="
 				+ assuntos + ", nivelDificuldade=" + nivelDificuldade
 				+ ", tipoQuestao=" + tipoQuestao + ", questao=" + questao
-				+ ", anexos=" + anexos + ", alternativas=" + alternativas + "]";
+				+ ", anexos=" + anexo + ", alternativas=" + alternativas + "]";
 	}
 
 }

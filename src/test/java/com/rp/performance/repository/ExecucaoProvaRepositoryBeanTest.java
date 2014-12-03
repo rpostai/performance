@@ -69,10 +69,13 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		
 		Assert.assertTrue(ex.isPresent());
 		
-		repository.iniciarExecucaoProva("98492727478874");
+		Prova prova = repository.iniciarExecucaoProva("98492727478874");
 		
 		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
 		Assert.assertNotNull(exec1.getDataInicio());
+		
+		Assert.assertNotNull(prova);
+		Assert.assertNotNull(prova.getQuestoes());
 	}
 	
 	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })

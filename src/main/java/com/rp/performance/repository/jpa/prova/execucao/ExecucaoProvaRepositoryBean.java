@@ -5,6 +5,7 @@ import java.util.List;
 import java.util.Optional;
 
 import javax.ejb.Stateless;
+import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
 import org.apache.commons.collections.CollectionUtils;
@@ -78,14 +79,29 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 	}
 
 	@Override
-	public void iniciarExecucaoProva(String voucher) {
+	public Prova iniciarExecucaoProva(String voucher) {
 		Optional<ExecucaoProva> execucao = recuperarProva(voucher);
 		if (execucao.isPresent()) {
 			ExecucaoProva exec = execucao.get();
 			exec.iniciarExecucao();
-		} else {
-			throw new VoucherNaoEncontradoException();
+
+			StringBuilder sb = new StringBuilder();
+			sb.append("select o from Prova o");
+			sb.append("  join fetch o.questoes  q    ");
+//			sb.append("  left join fetch q.anexo    a    ");
+			sb.append("  left join fetch q.alternativas alt ");
+			//sb.append("  left join fetch alt.anexo alta ");
+			sb.append("  where o.id = :prova");
+			TypedQuery<Prova> prova = em
+					.createQuery(sb.toString(), Prova.class);
+			try {
+				prova.setParameter("prova", execucao.get().getProva().getId());
+				return prova.getSingleResult();
+			} catch (NoResultException e) {
+				new VoucherNaoEncontradoException();
+			}
 		}
+		throw new VoucherNaoEncontradoException();
 	}
 
 	@Override
