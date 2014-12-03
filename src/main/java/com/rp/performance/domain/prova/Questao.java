@@ -20,6 +20,9 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
+import org.apache.commons.lang.builder.EqualsBuilder;
+import org.apache.commons.lang.builder.HashCodeBuilder;
+
 import com.rp.performance.domain.BaseEntity;
 
 @Entity
@@ -141,67 +144,20 @@ public class Questao extends BaseEntity {
 
 	@Override
 	public int hashCode() {
-		final int prime = 31;
-		int result = 1;
-		result = prime * result
-				+ ((alternativas == null) ? 0 : alternativas.hashCode());
-		result = prime * result + ((anexo == null) ? 0 : anexo.hashCode());
-		result = prime
-				* result
-				+ ((areaConhecimento == null) ? 0 : areaConhecimento.hashCode());
-		result = prime * result
-				+ ((assuntos == null) ? 0 : assuntos.hashCode());
-		result = prime
-				* result
-				+ ((nivelDificuldade == null) ? 0 : nivelDificuldade.hashCode());
-		result = prime * result + ((questao == null) ? 0 : questao.hashCode());
-		result = prime * result
-				+ ((tipoQuestao == null) ? 0 : tipoQuestao.hashCode());
-		return result;
+		return new HashCodeBuilder().append(tipoQuestao)
+				.append(nivelDificuldade).append(questao).toHashCode();
 	}
 
 	@Override
 	public boolean equals(Object obj) {
-		if (this == obj)
-			return true;
-		if (obj == null)
-			return false;
-		if (getClass() != obj.getClass())
-			return false;
-		Questao other = (Questao) obj;
-		if (alternativas == null) {
-			if (other.alternativas != null)
-				return false;
-		} else if (!alternativas.equals(other.alternativas))
-			return false;
-		if (anexo == null) {
-			if (other.anexo != null)
-				return false;
-		} else if (!anexo.equals(other.anexo))
-			return false;
-		if (areaConhecimento == null) {
-			if (other.areaConhecimento != null)
-				return false;
-		} else if (!areaConhecimento.equals(other.areaConhecimento))
-			return false;
-		if (assuntos == null) {
-			if (other.assuntos != null)
-				return false;
-		} else if (!assuntos.equals(other.assuntos))
-			return false;
-		if (nivelDificuldade == null) {
-			if (other.nivelDificuldade != null)
-				return false;
-		} else if (!nivelDificuldade.equals(other.nivelDificuldade))
-			return false;
-		if (questao == null) {
-			if (other.questao != null)
-				return false;
-		} else if (!questao.equals(other.questao))
-			return false;
-		if (tipoQuestao != other.tipoQuestao)
-			return false;
-		return true;
+		if (obj instanceof Questao) {
+			Questao q = (Questao) obj;
+			return new EqualsBuilder()
+					.append(q.getTipoQuestao(), this.getTipoQuestao())
+					.append(q.getNivelDificuldade(), this.getNivelDificuldade())
+					.append(q.getQuestao(), this.getQuestao()).isEquals();
+		}
+		return false;
 	}
 
 	@Override

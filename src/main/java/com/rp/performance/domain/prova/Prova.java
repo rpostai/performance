@@ -95,5 +95,43 @@ public class Prova extends BaseEntity {
 		return dataFinalPrevista.compareTo(agora) > 0;
 	}
 	
-
+	public Prova criarVersaoProva() {
+		
+		Prova prova = new Prova();
+		prova.setDescricao(this.getDescricao());
+		prova.setEmpresa(this.getEmpresa());
+		prova.setOrientacoes(this.getOrientacoes());
+		prova.setTempoDuracaoEmMinutos(this.getTempoDuracaoEmMinutos());
+		prova.setAreaConhecimento(this.getAreaConhecimento());
+		
+		questoes.stream().parallel().forEach(questao -> {
+			Questao q = new Questao();
+			
+			questao.getAlternativas().stream().parallel().forEach(alternativa -> {
+				AlternativaQuestao a = new AlternativaQuestao();
+				a.setDescricao(alternativa.getDescricao());
+				a.setEmpresa(a.getEmpresa());
+				a.setQuestao(q);
+				q.addAlternativa(a);
+			});
+			
+			questao.getGabarito().stream().parallel().forEach(gabarito -> {
+				AlternativaQuestao g = new AlternativaQuestao();
+				g.setDescricao(gabarito.getDescricao());
+				g.setEmpresa(gabarito.getEmpresa());
+				g.setQuestao(q);
+				q.addGabarito(g);
+			});
+			
+			questao.getAssuntos().stream().parallel().forEach(assunto -> {
+				Assunto a = new Assunto();
+				a.setAssunto(assunto.getAssunto());
+				a.setEmpresa(assunto.getEmpresa());
+				q.addAssunto(a);
+			});
+			
+			prova.addQuestao(questao);
+		});
+		return prova;
+	}
 }
