@@ -4,6 +4,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Optional;
 
+import javax.ejb.EJB;
 import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
@@ -15,10 +16,14 @@ import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.domain.prova.execucao.ExecucaoProva;
 import com.rp.performance.repository.jpa.BaseRepository;
+import com.rp.performance.repository.jpa.prova.ProvaRepository;
 
 @Stateless
 public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 		implements ExecucaoProvaRepository {
+	
+	@EJB
+	private ProvaRepository provaRepository;
 
 	public ExecucaoProvaRepositoryBean() {
 		super(ExecucaoProva.class);
@@ -84,22 +89,7 @@ public class ExecucaoProvaRepositoryBean extends BaseRepository<ExecucaoProva>
 		if (execucao.isPresent()) {
 			ExecucaoProva exec = execucao.get();
 			exec.iniciarExecucao();
-
-			StringBuilder sb = new StringBuilder();
-			sb.append("select o from Prova o");
-			sb.append("  join fetch o.questoes  q    ");
-//			sb.append("  left join fetch q.anexo    a    ");
-			sb.append("  left join fetch q.alternativas alt ");
-			//sb.append("  left join fetch alt.anexo alta ");
-			sb.append("  where o.id = :prova");
-			TypedQuery<Prova> prova = em
-					.createQuery(sb.toString(), Prova.class);
-			try {
-				prova.setParameter("prova", execucao.get().getProva().getId());
-				return prova.getSingleResult();
-			} catch (NoResultException e) {
-				new VoucherNaoEncontradoException();
-			}
+			return provaRepository.getProvaComAlternativas(exec.getProva().getId());
 		}
 		throw new VoucherNaoEncontradoException();
 	}

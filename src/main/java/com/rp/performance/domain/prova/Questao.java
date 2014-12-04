@@ -56,7 +56,7 @@ public class Questao extends BaseEntity {
 	@OneToMany(mappedBy = "questao", cascade = CascadeType.ALL)
 	private List<AlternativaQuestao> alternativas = new ArrayList<AlternativaQuestao>();
 
-	@OneToMany
+	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "questao_gabarito", joinColumns = @JoinColumn(name = "questao_id"), inverseJoinColumns = @JoinColumn(name = "questao_alternativa_id"))
 	private Set<AlternativaQuestao> gabarito = new HashSet<AlternativaQuestao>();
 
@@ -129,6 +129,7 @@ public class Questao extends BaseEntity {
 
 	public void addGabarito(AlternativaQuestao gabarito) {
 		this.gabarito.add(gabarito);
+		gabarito.setQuestao(this);
 	}
 
 	public void removeGabarito(AlternativaQuestao alternativa) {

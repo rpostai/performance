@@ -8,5 +8,9 @@ public interface ProvaRepository extends Repository<Prova> {
 	public Prova getProvaComAlternativas(Long id);
 
 	public Prova getProvaComGabarito(Long id);
+	
+	public Prova gerarVersao(Long id);
+	
+	public Prova getProvaCompleta(Long id);
 
 }
