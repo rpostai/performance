@@ -106,6 +106,11 @@ public class Prova extends BaseEntity {
 		
 		questoes.stream().parallel().forEach(questao -> {
 			Questao q = new Questao();
+			q.setQuestao(questao.getQuestao());
+			q.setEmpresa(questao.getEmpresa());
+			q.setNivelDificuldade(questao.getNivelDificuldade());
+			q.setTipoQuestao(questao.getTipoQuestao());
+			q.setAreaConhecimento(questao.getAreaConhecimento());
 			
 			questao.getAlternativas().stream().parallel().forEach(alternativa -> {
 				AlternativaQuestao a = new AlternativaQuestao();
@@ -124,13 +129,10 @@ public class Prova extends BaseEntity {
 			});
 			
 			questao.getAssuntos().stream().parallel().forEach(assunto -> {
-				Assunto a = new Assunto();
-				a.setAssunto(assunto.getAssunto());
-				a.setEmpresa(assunto.getEmpresa());
-				q.addAssunto(a);
+				q.addAssunto(assunto);
 			});
 			
-			prova.addQuestao(questao);
+			prova.addQuestao(q);
 		});
 		return prova;
 	}

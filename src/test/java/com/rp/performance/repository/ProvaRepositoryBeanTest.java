@@ -166,6 +166,7 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		Questao qv = versao.getQuestoes().iterator().next();
 		
 		Assert.assertEquals(qv.getQuestao(), qm.getQuestao());
+		Assert.assertNotEquals(qv.getId(), qm.getId());
 		Assert.assertEquals(qv.getNivelDificuldade().getDescricao(), qm.getNivelDificuldade().getDescricao());
 		
 		AlternativaQuestao aqm = qm.getGabarito().iterator().next();
