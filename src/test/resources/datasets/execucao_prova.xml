@@ -4,7 +4,9 @@
 	<nivel_dificuldade id="200000" descricao="Médio" data_cadastro="2014-01-01"/>
 	<nivel_dificuldade id="300000" descricao="Dificil" data_cadastro="2014-01-01"/>
 	<nivel_dificuldade id="400000" descricao="Muito Dificil" data_cadastro="2014-01-01"/>
+
 	<area_conhecimento id="100000" descricao="Tecnologia da Informação" empresa_id="1" data_cadastro="2014-01-01"/>
+
 	<assunto id="100000" data_cadastro="2014-01-01" descricao="Arquitetura de Software"/>
 	<assunto id="200000" data_cadastro="2014-01-01" descricao="Padrões de projeto"/>
 	<assunto_assunto assunto_id="100000" assunto_filho_id="200000"/>

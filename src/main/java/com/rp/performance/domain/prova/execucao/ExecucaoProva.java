@@ -1,10 +1,12 @@
 package com.rp.performance.domain.prova.execucao;
 
 import java.security.NoSuchAlgorithmException;
-import java.util.Calendar;
 import java.util.Date;
 import java.util.HashSet;
+import java.util.List;
+import java.util.OptionalDouble;
 import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -23,9 +25,16 @@ import com.rp.performance.domain.DateUtils;
 import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
 import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
 import com.rp.performance.domain.exceptions.ProvaJaIniciadaException;
+import com.rp.performance.domain.exceptions.ProvaNaoFinalizadaException;
 import com.rp.performance.domain.exceptions.ProvaNaoIniciadaException;
+import com.rp.performance.domain.prova.AlternativaQuestao;
 import com.rp.performance.domain.prova.Prova;
+import com.rp.performance.domain.prova.TipoQuestao;
 import com.rp.performance.services.GeradorHash;
+
+
+
+
 
 @Entity
 @Table(name = "execucao_prova", uniqueConstraints = { @UniqueConstraint(columnNames = {
@@ -212,5 +221,42 @@ public class ExecucaoProva extends BaseEntity {
 			return false;
 		return true;
 	}
-
+	
+	public double corrigirProva() {
+		if (!isProvaFinalizada()) {
+			throw new ProvaNaoFinalizadaException();
+		}
+		OptionalDouble notaFinalProva = respostas.stream().mapToDouble(resposta -> {
+			double notaQuestaoResposta = 0;
+			TipoQuestao tipoQuestao = resposta.getQuestao().getTipoQuestao();
+			if (tipoQuestao == TipoQuestao.ABERTA) {
+				notaQuestaoResposta = 0;
+			} else if (tipoQuestao == TipoQuestao.ESCOLHA_UNICA) {
+				Set<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
+				
+				notaQuestaoResposta = resposta.getRespostas().stream().allMatch(resp -> {
+					return resp.equals(gabarito.iterator().next());
+				}) ? 100 : 0;
+				
+				
+			} else if (tipoQuestao == TipoQuestao.MULTIPLA_ESCOLHA) {
+				Set<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
+				List<AlternativaQuestao> respostasCorretas = resposta.getRespostas().stream().filter(resp -> {
+					return gabarito.contains(resp);
+				}).collect(Collectors.toList());
+				List<AlternativaQuestao> respostasErradas = resposta.getRespostas().stream().filter(resp -> {
+					return !gabarito.contains(resp);
+				}).collect(Collectors.toList());
+				int saldo = respostasCorretas.size() - respostasErradas.size();
+				if(saldo > 0) {
+					notaQuestaoResposta = saldo / gabarito.size();
+				}
+			}
+			return notaQuestaoResposta;
+		}).reduce((notaAtual, proximaNota) -> {
+			return notaAtual + proximaNota;
+		});
+		
+		return notaFinalProva.getAsDouble();
+	}
 }

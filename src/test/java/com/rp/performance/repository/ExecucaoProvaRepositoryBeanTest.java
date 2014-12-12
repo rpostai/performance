@@ -1,7 +1,11 @@
 package com.rp.performance.repository;
 
+import java.util.ArrayList;
 import java.util.Calendar;
+import java.util.Iterator;
+import java.util.List;
 import java.util.Optional;
+import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.persistence.TypedQuery;
@@ -12,9 +16,12 @@ import org.junit.Test;
 
 import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
 import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
+import com.rp.performance.domain.prova.AlternativaQuestao;
 import com.rp.performance.domain.prova.Prova;
+import com.rp.performance.domain.prova.Questao;
 import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.domain.prova.execucao.ExecucaoProva;
+import com.rp.performance.domain.prova.execucao.ExecucaoProvaResposta;
 import com.rp.performance.repository.jpa.prova.execucao.ExecucaoProvaRepository;
 
 public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
@@ -125,9 +132,64 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		ExecucaoProva exec1 = em.find(ExecucaoProva.class, ex.get().getId());
 		Assert.assertNotNull(exec1.getDataConclusao());
 	}
+
+	@Test
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	public void deveExecutareCorrigirProvaComNota100() {
+		setDataAtual("2014-01-02 15:00:00");
+		ExecucaoProva e = em.find(ExecucaoProva.class, 100000l);
+		e.iniciarExecucao();
+		setDataAtual("2014-01-02 15:30:00");
+		
+		Set<Questao> questoes = e.getProva().getQuestoes();
+		Iterator<Questao> it = questoes.iterator();
+		Questao questao1 = it.next();
+		
+		ExecucaoProvaResposta resposta = new ExecucaoProvaResposta();
+		resposta.setQuestao(questao1);
+		
+		List<AlternativaQuestao> respostas = new ArrayList<AlternativaQuestao>();
+		respostas.addAll(questao1.getGabarito());
+		resposta.setRespostas(respostas);
+		
+		e.addResposta(resposta);
+		
+		e.finalizarExecucao();
+		em.merge(e);
+		em.flush();
+		
+		double nota = e.corrigirProva();
+		
+		Assert.assertEquals(new Double(100), new Double(nota));
+	}
 	
-	
-	
-	
-	
+	@Test
+	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	public void deveExecutareCorrigirProvaComNotaZero() {
+		setDataAtual("2014-01-02 15:00:00");
+		ExecucaoProva e = em.find(ExecucaoProva.class, 100000l);
+		e.iniciarExecucao();
+		setDataAtual("2014-01-02 15:30:00");
+		
+		Set<Questao> questoes = e.getProva().getQuestoes();
+		Iterator<Questao> it = questoes.iterator();
+		Questao questao1 = it.next();
+		
+		ExecucaoProvaResposta resposta = new ExecucaoProvaResposta();
+		resposta.setQuestao(questao1);
+		
+		List<AlternativaQuestao> respostas = new ArrayList<AlternativaQuestao>();
+		respostas.add(questao1.getAlternativas().get(1));
+		resposta.setRespostas(respostas);
+		
+		e.addResposta(resposta);
+		
+		e.finalizarExecucao();
+		em.merge(e);
+		em.flush();
+		
+		double nota = e.corrigirProva();
+		
+		Assert.assertEquals(new Double(0), new Double(nota));
+	}
 }

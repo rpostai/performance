@@ -4,7 +4,7 @@ import java.util.Arrays;
 import java.util.Optional;
 
 public enum TipoQuestao {
-	MULTIPLA_ESCOLHA("M"), ESCOLHA_UNICA("U"), SOMATORIA("S"), ABERTA("A");
+	MULTIPLA_ESCOLHA("M"), ESCOLHA_UNICA("U"), ABERTA("A");
 
 	private final String sigla;
 
