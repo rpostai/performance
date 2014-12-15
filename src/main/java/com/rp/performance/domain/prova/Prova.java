@@ -2,8 +2,8 @@ package com.rp.performance.domain.prova;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.HashSet;
-import java.util.Set;
+import java.util.LinkedList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -42,7 +42,7 @@ public class Prova extends BaseEntity {
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "prova_questao", joinColumns = @JoinColumn(name = "prova_id"), inverseJoinColumns = @JoinColumn(name = "questao_id"))
-	private Set<Questao> questoes = new HashSet<Questao>();
+	private List<Questao> questoes = new LinkedList<Questao>();
 
 	public String getDescricao() {
 		return descricao;
@@ -52,7 +52,7 @@ public class Prova extends BaseEntity {
 		this.descricao = descricao;
 	}
 
-	public Set<Questao> getQuestoes() {
+	public List<Questao> getQuestoes() {
 		return questoes;
 	}
 

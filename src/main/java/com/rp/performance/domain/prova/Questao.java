@@ -58,7 +58,7 @@ public class Questao extends BaseEntity {
 
 	@OneToMany(cascade=CascadeType.ALL)
 	@JoinTable(name = "questao_gabarito", joinColumns = @JoinColumn(name = "questao_id"), inverseJoinColumns = @JoinColumn(name = "questao_alternativa_id"))
-	private Set<AlternativaQuestao> gabarito = new HashSet<AlternativaQuestao>();
+	private List<AlternativaQuestao> gabarito = new ArrayList<AlternativaQuestao>();
 
 	public AreaConhecimento getAreaConhecimento() {
 		return areaConhecimento;
@@ -123,7 +123,7 @@ public class Questao extends BaseEntity {
 		});
 	}
 
-	public Set<AlternativaQuestao> getGabarito() {
+	public List<AlternativaQuestao> getGabarito() {
 		return gabarito;
 	}
 

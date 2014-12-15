@@ -1,10 +1,10 @@
 package com.rp.performance.domain.prova.execucao;
 
 import java.security.NoSuchAlgorithmException;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.HashSet;
 import java.util.List;
-import java.util.OptionalDouble;
 import java.util.Set;
 import java.util.stream.Collectors;
 
@@ -184,6 +184,10 @@ public class ExecucaoProva extends BaseEntity {
 		return dataConclusao != null;
 	}
 
+	public Set<ExecucaoProvaResposta> getRespostas() {
+		return respostas;
+	}
+
 	@Override
 	public int hashCode() {
 		final int prime = 31;
@@ -222,41 +226,68 @@ public class ExecucaoProva extends BaseEntity {
 		return true;
 	}
 	
-	public double corrigirProva() {
+	public List<CorrecaoProva> corrigirProva() {
 		if (!isProvaFinalizada()) {
 			throw new ProvaNaoFinalizadaException();
 		}
-		OptionalDouble notaFinalProva = respostas.stream().mapToDouble(resposta -> {
+		List<CorrecaoProva> result = new ArrayList<CorrecaoProva>();
+		respostas.stream().parallel().forEach(resposta -> {
+			
+			CorrecaoProva correcao = new CorrecaoProva(this, resposta.getQuestao());
+			correcao.setAreaConhecimento(resposta.getQuestao().getAreaConhecimento());
+			correcao.setNivelDificuldade(resposta.getQuestao().getNivelDificuldade());
+			correcao.setAssuntos(resposta.getQuestao().getAssuntos());
+			
 			double notaQuestaoResposta = 0;
 			TipoQuestao tipoQuestao = resposta.getQuestao().getTipoQuestao();
+			
+			correcao.setTipoQuestao(tipoQuestao);
+			
 			if (tipoQuestao == TipoQuestao.ABERTA) {
+				
 				notaQuestaoResposta = 0;
+				correcao.setNotaCalculada(new Float(0));
+				
 			} else if (tipoQuestao == TipoQuestao.ESCOLHA_UNICA) {
-				Set<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
+				List<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
 				
 				notaQuestaoResposta = resposta.getRespostas().stream().allMatch(resp -> {
 					return resp.equals(gabarito.iterator().next());
-				}) ? 100 : 0;
+				}) ? 1 : 0;
+				
+				correcao.setGabarito(gabarito);
+				correcao.setRespostas(resposta.getRespostas());
+				
+				correcao.setNotaCalculada(new Float(notaQuestaoResposta));
+				correcao.setQuestaoCorreta(notaQuestaoResposta > 0);
 				
 				
 			} else if (tipoQuestao == TipoQuestao.MULTIPLA_ESCOLHA) {
-				Set<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
+				
+				List<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
 				List<AlternativaQuestao> respostasCorretas = resposta.getRespostas().stream().filter(resp -> {
 					return gabarito.contains(resp);
 				}).collect(Collectors.toList());
 				List<AlternativaQuestao> respostasErradas = resposta.getRespostas().stream().filter(resp -> {
 					return !gabarito.contains(resp);
 				}).collect(Collectors.toList());
-				int saldo = respostasCorretas.size() - respostasErradas.size();
+				double saldo = respostasCorretas.size() - respostasErradas.size();
 				if(saldo > 0) {
 					notaQuestaoResposta = saldo / gabarito.size();
 				}
+				
+				correcao.setGabarito(gabarito);
+				correcao.setRespostas(resposta.getRespostas());
+				correcao.setNotaCalculada(new Float(notaQuestaoResposta));
+
+				correcao.setQuestaoCorreta(notaQuestaoResposta == 1.0);
+
+				correcao.setQuestaoParcialmentecorreta((notaQuestaoResposta > 0) &&  (notaQuestaoResposta < 1.0));
+				
 			}
-			return notaQuestaoResposta;
-		}).reduce((notaAtual, proximaNota) -> {
-			return notaAtual + proximaNota;
+			result.add(correcao);
 		});
 		
-		return notaFinalProva.getAsDouble();
+		return result;
 	}
 }
