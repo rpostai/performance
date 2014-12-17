@@ -1,6 +1,6 @@
 package com.rp.performance.domain.prova.execucao;
 
-import java.util.HashSet;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Set;
 
@@ -38,7 +38,7 @@ public class CorrecaoProva extends BaseEntity {
 
 	@ManyToMany
 	@JoinTable(name = "correcao_prova_assunto", joinColumns = @JoinColumn(name = "correcao_prova_id"), inverseJoinColumns = @JoinColumn(name = "assunto_id"))
-	private Set<Assunto> assuntos = new HashSet<Assunto>();
+	private List<Assunto> assuntos = new ArrayList<Assunto>();
 
 	@Convert(attributeName = "tipo_questao", converter = TipoQuestaoConverter.class)
 	@Column(name = "tipo_questao", length = 1, nullable = false)
@@ -102,11 +102,11 @@ public class CorrecaoProva extends BaseEntity {
 		this.areaConhecimento = areaConhecimento;
 	}
 
-	public Set<Assunto> getAssuntos() {
+	public List<Assunto> getAssuntos() {
 		return assuntos;
 	}
 
-	public void setAssuntos(Set<Assunto> assuntos) {
+	public void setAssuntos(List<Assunto> assuntos) {
 		this.assuntos = assuntos;
 	}
 

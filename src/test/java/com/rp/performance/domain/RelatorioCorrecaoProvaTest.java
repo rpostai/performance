@@ -22,6 +22,7 @@ import com.rp.performance.domain.prova.execucao.CorrecaoProva;
 import com.rp.performance.domain.prova.execucao.ExecucaoProva;
 import com.rp.performance.domain.prova.execucao.ExecucaoProvaResposta;
 import com.rp.performance.domain.prova.execucao.RelatorioCorrecaoProva;
+import com.rp.performance.domain.prova.execucao.RelatorioCorrecaoProva.Relatorio;
 import com.rp.performance.domain.prova.execucao.RelatorioCorrecaoProva.RelatorioAreaConhecimento;
 
 public class RelatorioCorrecaoProvaTest {
@@ -87,8 +88,8 @@ public class RelatorioCorrecaoProvaTest {
 		Questao q1 = questao1(muitoDificil, javase, orientacaoObjetos);
 		Questao q2 = questao2(facil, javaee, ejb);
 		Questao q3 = questao3(facil, javaee, ejb);
-		Questao q4 = questao4(medio, javaee, ejb);
-		Questao q5 = questao5(medio, javaee, ejb);
+		Questao q4 = questao4(medio, javaee, jpa);
+		Questao q5 = questao5(medio, javaee, jdbc);
 
 		Prova p = new Prova();
 		p.setId(1l);
@@ -383,6 +384,64 @@ public class RelatorioCorrecaoProvaTest {
 		
 		Assert.assertEquals(new BigDecimal("2.67"), relatorioPorArea.get(0).getNotaFinalAbsoluta());
 		Assert.assertEquals(new BigDecimal("0.67"), relatorioPorArea.get(0).getNotaFinalPercentual());
+		
+	}
+	
+	@Test
+	public void deveGerarRelatorioPorNivelDificuldade() {
+		List<CorrecaoProva> correcao = execucao.corrigirProva();
+		RelatorioCorrecaoProva relatorio = new RelatorioCorrecaoProva(correcao);
+		Assert.assertNotNull(relatorio);
+		List<Relatorio> relatorioPorNivel = relatorio.getNotasPorNivelDificuldade();
+		Assert.assertNotNull(relatorioPorNivel);
+		
+		Assert.assertEquals(3,relatorioPorNivel.size());
+		
+		Assert.assertEquals("Fácil", ((NivelDificuldade)relatorioPorNivel.get(0).getAgrupador()).getDescricao());
+		Assert.assertEquals("Muito difícil", ((NivelDificuldade)relatorioPorNivel.get(1).getAgrupador()).getDescricao());
+		Assert.assertEquals("Médio", ((NivelDificuldade)relatorioPorNivel.get(2).getAgrupador()).getDescricao());
+		
+		Assert.assertEquals(2, relatorioPorNivel.get(0).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("0.67"), relatorioPorNivel.get(0).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("0.34"), relatorioPorNivel.get(0).getNotaFinalPercentual());
+		
+		Assert.assertEquals(1, relatorioPorNivel.get(1).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorNivel.get(1).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorNivel.get(1).getNotaFinalPercentual());
+		
+		Assert.assertEquals(2, relatorioPorNivel.get(2).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("2.00"), relatorioPorNivel.get(2).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorNivel.get(2).getNotaFinalPercentual());
+
+	}
+	
+	@Test
+	public void deveGerarRelatorioPorAssuntos() {
+		
+		List<CorrecaoProva> correcao = execucao.corrigirProva();
+		RelatorioCorrecaoProva relatorio = new RelatorioCorrecaoProva(correcao);
+		Assert.assertNotNull(relatorio);
+		List<Relatorio> relatorioPorAssunto = relatorio.getNotasPorAssunto();
+		Assert.assertNotNull(relatorioPorAssunto);
+		
+		Assert.assertEquals(4,relatorioPorAssunto.size());
+		
+		Assert.assertEquals("EJB", ((Assunto)relatorioPorAssunto.get(0).getAgrupador()).getAssunto());
+		Assert.assertEquals("JDBC", ((Assunto)relatorioPorAssunto.get(1).getAgrupador()).getAssunto());
+		Assert.assertEquals("JPA", ((Assunto)relatorioPorAssunto.get(2).getAgrupador()).getAssunto());
+		Assert.assertEquals("Orientação a Objetos", ((Assunto)relatorioPorAssunto.get(3).getAgrupador()).getAssunto());
+		
+//		Assert.assertEquals(2, relatorioPorAssunto.get(0).getTotalQuestoes());
+//		Assert.assertEquals(new BigDecimal("0.67"), relatorioPorAssunto.get(0).getNotaFinalAbsoluta());
+//		Assert.assertEquals(new BigDecimal("0.34"), relatorioPorAssunto.get(0).getNotaFinalPercentual());
+//		
+//		Assert.assertEquals(1, relatorioPorAssunto.get(1).getTotalQuestoes());
+//		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(1).getNotaFinalAbsoluta());
+//		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(1).getNotaFinalPercentual());
+//		
+//		Assert.assertEquals(2, relatorioPorAssunto.get(2).getTotalQuestoes());
+//		Assert.assertEquals(new BigDecimal("2.00"), relatorioPorAssunto.get(2).getNotaFinalAbsoluta());
+//		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(2).getNotaFinalPercentual());
 		
 	}
 

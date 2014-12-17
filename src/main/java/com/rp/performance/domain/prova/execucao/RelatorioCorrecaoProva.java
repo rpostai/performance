@@ -10,6 +10,8 @@ import java.util.stream.Collectors;
 import org.apache.commons.collections.CollectionUtils;
 
 import com.rp.performance.domain.prova.AreaConhecimento;
+import com.rp.performance.domain.prova.Assunto;
+import com.rp.performance.domain.prova.NivelDificuldade;
 
 public class RelatorioCorrecaoProva {
 
@@ -38,33 +40,35 @@ public class RelatorioCorrecaoProva {
 						.getNotaCalculada() : new Float(0);
 	}
 
-	public List<RelatorioAreaConhecimento> getNotasPorAreaConhecimento() {
+	public List<Relatorio> getNotasPorAssunto() {
 		
-		List<RelatorioAreaConhecimento> resultado = new ArrayList<RelatorioCorrecaoProva.RelatorioAreaConhecimento>();
+		List<Relatorio> resultado = new ArrayList<Relatorio>();
 		
-		List<AreaConhecimento> areasConhecimento = items.stream().map(correcao -> {
-			return correcao.getAreaConhecimento();
-		}).distinct().sorted((a1, a2) -> {
-			return a1.getDescricao().compareTo(a2.getDescricao());
+		List<Assunto> assuntos = new ArrayList<Assunto>();
+		
+		items.stream().forEach(correcao -> {
+			assuntos.addAll(correcao.getAssuntos());
+		});
+		
+		List<Assunto> assuntosDistintos = assuntos.stream().distinct().sorted((a1, a2) -> {
+			return a1.getAssunto().compareTo(a2.getAssunto());
 		}).collect(Collectors.toList());
 		
-		areasConhecimento.stream().forEachOrdered(areaConhecimento -> {
+		assuntosDistintos.stream().forEachOrdered(assunto -> {
 			
-			RelatorioAreaConhecimento relatorio = new RelatorioAreaConhecimento();
+			Relatorio relatorio = new Relatorio(assunto);
 			
-			relatorio.setAreaConhecimento(areaConhecimento);
-			
-			List<CorrecaoProva> correcoesPorAreaConhecimento = items.stream().filter(correcao -> {
-				return correcao.getAreaConhecimento().equals(areaConhecimento);
+			List<CorrecaoProva> correcoesPorAssunto = items.stream().filter(correcao -> {
+				return correcao.getNivelDificuldade().equals(assunto);
 			}).collect(Collectors.toList());
 			
-			relatorio.setTotalQuestoes(correcoesPorAreaConhecimento.size());
+			relatorio.setTotalQuestoes(correcoesPorAssunto.size());
 			
-			List<CorrecaoProva> questoesCorretas = getQuestoesCorretas(correcoesPorAreaConhecimento);
+			List<CorrecaoProva> questoesCorretas = getQuestoesCorretas(correcoesPorAssunto);
 			relatorio.setTotalQuestoesCorretas(questoesCorretas.size());
 			relatorio.setNotaFinalQuestoesCorretas(totalizarNota(questoesCorretas));
 			
-			List<CorrecaoProva> questoesParcialmenteCorretas = getQuestoesParcialmenteCorretas(correcoesPorAreaConhecimento);
+			List<CorrecaoProva> questoesParcialmenteCorretas = getQuestoesParcialmenteCorretas(correcoesPorAssunto);
 			relatorio.setTotalQuestoesParcialmenteCorretas(questoesParcialmenteCorretas.size());
 			relatorio.setNotaFinalQuestoesParcialmenteCorretas(totalizarNota(questoesParcialmenteCorretas));
 			
@@ -74,12 +78,112 @@ public class RelatorioCorrecaoProva {
 		
 		return resultado;
 	}
+	
+	public List<Relatorio> getNotasPorNivelDificuldade() {
+
+		List<Relatorio> resultado = new ArrayList<Relatorio>();
+
+		List<NivelDificuldade> nivelDificuldade = items.stream()
+				.map(correcao -> {
+					return correcao.getNivelDificuldade();
+				}).distinct().sorted((a1, a2) -> {
+					return a1.getDescricao().compareTo(a2.getDescricao());
+				}).collect(Collectors.toList());
+
+		nivelDificuldade
+				.stream()
+				.forEachOrdered(
+						nivel -> {
+
+							Relatorio relatorio = new Relatorio(nivel);
+
+							List<CorrecaoProva> correcoesPorAreaConhecimento = items
+									.stream()
+									.filter(correcao -> {
+										return correcao.getNivelDificuldade()
+												.equals(nivel);
+									}).collect(Collectors.toList());
+
+							relatorio
+									.setTotalQuestoes(correcoesPorAreaConhecimento
+											.size());
+
+							List<CorrecaoProva> questoesCorretas = getQuestoesCorretas(correcoesPorAreaConhecimento);
+							relatorio.setTotalQuestoesCorretas(questoesCorretas
+									.size());
+							relatorio
+									.setNotaFinalQuestoesCorretas(totalizarNota(questoesCorretas));
+
+							List<CorrecaoProva> questoesParcialmenteCorretas = getQuestoesParcialmenteCorretas(correcoesPorAreaConhecimento);
+							relatorio
+									.setTotalQuestoesParcialmenteCorretas(questoesParcialmenteCorretas
+											.size());
+							relatorio
+									.setNotaFinalQuestoesParcialmenteCorretas(totalizarNota(questoesParcialmenteCorretas));
+
+							resultado.add(relatorio);
+
+						});
+
+		return resultado;
+	}
+
+	public List<RelatorioAreaConhecimento> getNotasPorAreaConhecimento() {
+
+		List<RelatorioAreaConhecimento> resultado = new ArrayList<RelatorioCorrecaoProva.RelatorioAreaConhecimento>();
+
+		List<AreaConhecimento> areasConhecimento = items.stream()
+				.map(correcao -> {
+					return correcao.getAreaConhecimento();
+				}).distinct().sorted((a1, a2) -> {
+					return a1.getDescricao().compareTo(a2.getDescricao());
+				}).collect(Collectors.toList());
+
+		areasConhecimento
+				.stream()
+				.forEachOrdered(
+						areaConhecimento -> {
+
+							RelatorioAreaConhecimento relatorio = new RelatorioAreaConhecimento();
+
+							relatorio.setAreaConhecimento(areaConhecimento);
+
+							List<CorrecaoProva> correcoesPorAreaConhecimento = items
+									.stream()
+									.filter(correcao -> {
+										return correcao.getAreaConhecimento()
+												.equals(areaConhecimento);
+									}).collect(Collectors.toList());
+
+							relatorio
+									.setTotalQuestoes(correcoesPorAreaConhecimento
+											.size());
+
+							List<CorrecaoProva> questoesCorretas = getQuestoesCorretas(correcoesPorAreaConhecimento);
+							relatorio.setTotalQuestoesCorretas(questoesCorretas
+									.size());
+							relatorio
+									.setNotaFinalQuestoesCorretas(totalizarNota(questoesCorretas));
+
+							List<CorrecaoProva> questoesParcialmenteCorretas = getQuestoesParcialmenteCorretas(correcoesPorAreaConhecimento);
+							relatorio
+									.setTotalQuestoesParcialmenteCorretas(questoesParcialmenteCorretas
+											.size());
+							relatorio
+									.setNotaFinalQuestoesParcialmenteCorretas(totalizarNota(questoesParcialmenteCorretas));
+
+							resultado.add(relatorio);
+
+						});
+
+		return resultado;
+	}
 
 	private Float totalizarNota(List<CorrecaoProva> listaCorrecoes) {
 		Optional<Float> result = listaCorrecoes.stream().map(correcao -> {
-			return	getNotaFinalItemCorrecao(correcao);
+			return getNotaFinalItemCorrecao(correcao);
 		}).reduce((atual, proximo) -> {
-			return atual +  proximo;
+			return atual + proximo;
 		});
 		if (result.isPresent()) {
 			return result.get();
@@ -100,6 +204,92 @@ public class RelatorioCorrecaoProva {
 		return listaCorrecoes.stream().filter(correcao -> {
 			return correcao.isQuestaoParcialmentecorreta();
 		}).collect(Collectors.toList());
+	}
+
+	public class Relatorio {
+
+		private Object agrupador;
+
+		private int totalQuestoes;
+
+		private int totalQuestoesCorretas;
+
+		private int totalQuestoesParcialmenteCorretas;
+
+		private float notaFinalQuestoesCorretas;
+
+		private float notaFinalQuestoesParcialmenteCorretas;
+
+		public Relatorio(Object agrupador) {
+			this.agrupador = agrupador;
+		}
+
+		public int getTotalQuestoesParcialmenteCorretas() {
+			return totalQuestoesParcialmenteCorretas;
+		}
+
+		public void setTotalQuestoesParcialmenteCorretas(
+				int totalQuestoesParcialmenteCorretas) {
+			this.totalQuestoesParcialmenteCorretas = totalQuestoesParcialmenteCorretas;
+		}
+
+		public Object getAgrupador() {
+			return agrupador;
+		}
+
+		public int getTotalQuestoes() {
+			return totalQuestoes;
+		}
+
+		public void setTotalQuestoes(int totalQuestoes) {
+			this.totalQuestoes = totalQuestoes;
+		}
+
+		public int getTotalQuestoesCorretas() {
+			return totalQuestoesCorretas;
+		}
+
+		public void setTotalQuestoesCorretas(int totalQuestoesCorretas) {
+			this.totalQuestoesCorretas = totalQuestoesCorretas;
+		}
+
+		public float getNotaFinal() {
+			return (totalQuestoesCorretas + totalQuestoesParcialmenteCorretas)
+					/ totalQuestoes;
+		}
+
+		public float getNotaFinalQuestoesCorretas() {
+			return notaFinalQuestoesCorretas;
+		}
+
+		public void setNotaFinalQuestoesCorretas(float notaFinalQuestoesCorretas) {
+			this.notaFinalQuestoesCorretas = notaFinalQuestoesCorretas;
+		}
+
+		public float getNotaFinalQuestoesParcialmenteCorretas() {
+			return notaFinalQuestoesParcialmenteCorretas;
+		}
+
+		public void setNotaFinalQuestoesParcialmenteCorretas(
+				float notaFinalQuestoesParcialmenteCorretas) {
+			this.notaFinalQuestoesParcialmenteCorretas = notaFinalQuestoesParcialmenteCorretas;
+		}
+
+		public BigDecimal getNotaFinalAbsoluta() {
+			BigDecimal valor = new BigDecimal(notaFinalQuestoesCorretas
+					+ notaFinalQuestoesParcialmenteCorretas);
+			valor = valor.setScale(2, RoundingMode.HALF_UP);
+			return valor;
+
+		}
+
+		public BigDecimal getNotaFinalPercentual() {
+			BigDecimal valor = new BigDecimal(getNotaFinalAbsoluta()
+					.doubleValue() / (totalQuestoes * 1));
+			valor = valor.setScale(2, RoundingMode.HALF_UP);
+			return valor;
+		}
+
 	}
 
 	public class RelatorioAreaConhecimento {
@@ -150,7 +340,8 @@ public class RelatorioCorrecaoProva {
 		}
 
 		public float getNotaFinal() {
-			return (totalQuestoesCorretas + totalQuestoesParcialmenteCorretas) / totalQuestoes;
+			return (totalQuestoesCorretas + totalQuestoesParcialmenteCorretas)
+					/ totalQuestoes;
 		}
 
 		public float getNotaFinalQuestoesCorretas() {
@@ -171,15 +362,17 @@ public class RelatorioCorrecaoProva {
 		}
 
 		public BigDecimal getNotaFinalAbsoluta() {
-			BigDecimal valor = new BigDecimal(notaFinalQuestoesCorretas + notaFinalQuestoesParcialmenteCorretas);
+			BigDecimal valor = new BigDecimal(notaFinalQuestoesCorretas
+					+ notaFinalQuestoesParcialmenteCorretas);
 			valor = valor.setScale(2, RoundingMode.HALF_UP);
 			return valor;
-			 
+
 		}
-		
+
 		public BigDecimal getNotaFinalPercentual() {
-			BigDecimal valor = new BigDecimal(getNotaFinalAbsoluta().doubleValue() / (totalQuestoes  * 1));
-			valor =  valor.setScale(2,  RoundingMode.HALF_UP);
+			BigDecimal valor = new BigDecimal(getNotaFinalAbsoluta()
+					.doubleValue() / (totalQuestoes * 1));
+			valor = valor.setScale(2, RoundingMode.HALF_UP);
 			return valor;
 		}
 
