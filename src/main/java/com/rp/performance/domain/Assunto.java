@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -14,8 +14,6 @@ import javax.persistence.OneToMany;
 import javax.persistence.Table;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
-
-import com.rp.performance.domain.BaseEntity;
 
 @Entity
 @Table(name = "assunto")

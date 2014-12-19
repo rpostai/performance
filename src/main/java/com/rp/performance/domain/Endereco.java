@@ -1,10 +1,14 @@
 package com.rp.performance.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Embeddable;
 
 @Embeddable
-public class Endereco {
+public class Endereco implements Serializable {
+
+	private static final long serialVersionUID = 5786848098915860067L;
 
 	@Column(name = "cep", nullable = false)
 	private int cep;

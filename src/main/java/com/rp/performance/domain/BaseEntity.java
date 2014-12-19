@@ -19,7 +19,9 @@ import com.rp.performance.repository.jpa.listener.RepositoryEntityListener;
 
 @MappedSuperclass
 @EntityListeners({ RepositoryEntityListener.class })
-public class BaseEntity implements Serializable {
+public abstract class BaseEntity implements Serializable {
+
+	private static final long serialVersionUID = 8772731689642188163L;
 
 	@Id
 	@GeneratedValue(strategy = GenerationType.AUTO)

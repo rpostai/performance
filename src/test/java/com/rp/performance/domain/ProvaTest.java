@@ -5,13 +5,6 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.AreaConhecimento;
-import com.rp.performance.domain.prova.Assunto;
-import com.rp.performance.domain.prova.NivelDificuldade;
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.Questao;
-
 public class ProvaTest {
 	
 	private Prova p;
@@ -38,11 +31,11 @@ public class ProvaTest {
 		
 		AlternativaQuestao aq = new AlternativaQuestao();
 		aq.setDescricao("opcao 1");
-		aq.setQuestao(q);
+		//aq.setQuestao(q);
 		
 		AlternativaQuestao aq2 = new AlternativaQuestao();
 		aq2.setDescricao("opcao 2");
-		aq2.setQuestao(q);
+		//aq2.setQuestao(q);
 		
 		q.addAlternativa(aq);
 		q.addAlternativa(aq2);

@@ -1,10 +1,8 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.Table;
-
-import com.rp.performance.domain.BaseEntity;
 
 @Entity
 @Table(name = "nivel_dificuldade")

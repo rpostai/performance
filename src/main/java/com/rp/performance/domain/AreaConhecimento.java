@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import java.util.Collections;
 import java.util.HashSet;
@@ -12,8 +12,6 @@ import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import com.rp.performance.domain.BaseEntity;
 
 @Entity
 @Table(name = "area_conhecimento")

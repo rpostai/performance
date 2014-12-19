@@ -5,7 +5,7 @@ import javax.ejb.EJB;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.rp.performance.domain.prova.execucao.Candidato;
+import com.rp.performance.domain.Candidato;
 import com.rp.performance.repository.jpa.prova.execucao.CandidatoRepository;
 
 public class CandidatoRepositoryBeanTest extends AbstractRepositoryTest {

@@ -1,7 +1,9 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import java.util.Arrays;
 import java.util.Optional;
+
+import javax.persistence.Embeddable;
 
 public enum TipoQuestao {
 	MULTIPLA_ESCOLHA("M"), ESCOLHA_UNICA("U"), ABERTA("A");

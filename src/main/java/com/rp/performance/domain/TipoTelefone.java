@@ -1,9 +1,12 @@
 package com.rp.performance.domain;
 
+import java.io.Serializable;
 import java.util.Arrays;
 import java.util.Optional;
 
-public enum TipoTelefone {
+import javax.persistence.Embeddable;
+
+public enum TipoTelefone implements Serializable {
 	FIXO("F"), CELULAR("C"), RADIO("R");
 
 	private final String sigla;

@@ -3,9 +3,9 @@ package com.rp.performance.repository.jpa.prova.execucao;
 import java.util.Date;
 import java.util.Optional;
 
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.execucao.Candidato;
-import com.rp.performance.domain.prova.execucao.ExecucaoProva;
+import com.rp.performance.domain.Candidato;
+import com.rp.performance.domain.ExecucaoProva;
+import com.rp.performance.domain.Prova;
 import com.rp.performance.repository.Repository;
 
 public interface ExecucaoProvaRepository extends Repository<ExecucaoProva> {

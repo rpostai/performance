@@ -2,7 +2,7 @@ package com.rp.performance.repository.jpa.prova.execucao;
 
 import javax.ejb.Stateless;
 
-import com.rp.performance.domain.prova.execucao.Candidato;
+import com.rp.performance.domain.Candidato;
 import com.rp.performance.repository.jpa.BaseRepository;
 
 @Stateless

@@ -1,5 +1,6 @@
 package com.rp.performance.domain;
 
+import java.io.Serializable;
 import java.util.Set;
 
 import javax.persistence.CollectionTable;
@@ -15,7 +16,9 @@ import javax.validation.constraints.Size;
 
 @Entity
 @Table(name="empresa")
-public class Empresa {
+public class Empresa implements Serializable {
+	
+	private static final long serialVersionUID = 715955743076451726L;
 
 	@Id
 	@Column(name = "id")

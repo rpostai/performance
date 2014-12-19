@@ -8,7 +8,7 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.rp.performance.domain.prova.NivelDificuldade;
+import com.rp.performance.domain.NivelDificuldade;
 import com.rp.performance.repository.jpa.prova.NivelDificuldadeRepository;
 
 public class NivelDificuldadeRepositoryBeanTest extends AbstractRepositoryTest {

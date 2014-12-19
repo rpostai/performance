@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova.execucao;
+package com.rp.performance.domain;
 
 import java.security.NoSuchAlgorithmException;
 import java.util.ArrayList;
@@ -18,28 +18,19 @@ import javax.persistence.PrePersist;
 import javax.persistence.Table;
 import javax.persistence.Temporal;
 import javax.persistence.TemporalType;
-import javax.persistence.UniqueConstraint;
 
-import com.rp.performance.domain.BaseEntity;
-import com.rp.performance.domain.DateUtils;
 import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
 import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
 import com.rp.performance.domain.exceptions.ProvaJaIniciadaException;
 import com.rp.performance.domain.exceptions.ProvaNaoFinalizadaException;
 import com.rp.performance.domain.exceptions.ProvaNaoIniciadaException;
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.TipoQuestao;
 import com.rp.performance.services.GeradorHash;
 
-
-
-
-
 @Entity
-@Table(name = "execucao_prova", uniqueConstraints = { @UniqueConstraint(columnNames = {
-		"candidato_id", "prova_id", "voucher" }) })
+@Table(name = "execucao_prova")
 public class ExecucaoProva extends BaseEntity {
+
+	private static final long serialVersionUID = -4319539019385833667L;
 
 	private static final String SALT = "94fyy4nfff4%##Fdujkjjfjfjsqee";
 
@@ -59,6 +50,7 @@ public class ExecucaoProva extends BaseEntity {
 	private Date dataAbertura;
 
 	@Column(name = "data_validade", nullable = false)
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataValidade;
 
 	@Column(name = "data_inicio")
@@ -66,10 +58,28 @@ public class ExecucaoProva extends BaseEntity {
 	private Date dataInicio;
 
 	@Column(name = "data_conclusao")
+	@Temporal(TemporalType.TIMESTAMP)
 	private Date dataConclusao;
 
 	@OneToMany(cascade = CascadeType.ALL, mappedBy = "execucaoProva")
 	private Set<ExecucaoProvaResposta> respostas = new HashSet<ExecucaoProvaResposta>();
+
+
+	public void setVoucher(String voucher) {
+		this.voucher = voucher;
+	}
+
+	public void setDataInicio(Date dataInicio) {
+		this.dataInicio = dataInicio;
+	}
+
+	public void setDataConclusao(Date dataConclusao) {
+		this.dataConclusao = dataConclusao;
+	}
+
+	public void setRespostas(Set<ExecucaoProvaResposta> respostas) {
+		this.respostas = respostas;
+	}
 
 	public Candidato getCandidato() {
 		return candidato;
@@ -166,7 +176,7 @@ public class ExecucaoProva extends BaseEntity {
 	}
 
 	public void addResposta(ExecucaoProvaResposta resposta) {
-		resposta.setExecucaoProva(this);
+		//resposta.setExecucaoProva(this);
 		this.respostas.add(resposta);
 	}
 
@@ -225,69 +235,93 @@ public class ExecucaoProva extends BaseEntity {
 			return false;
 		return true;
 	}
-	
+
 	public List<CorrecaoProva> corrigirProva() {
 		if (!isProvaFinalizada()) {
 			throw new ProvaNaoFinalizadaException();
 		}
 		List<CorrecaoProva> result = new ArrayList<CorrecaoProva>();
-		respostas.stream().parallel().forEach(resposta -> {
-			
-			CorrecaoProva correcao = new CorrecaoProva(this, resposta.getQuestao());
-			correcao.setAreaConhecimento(resposta.getQuestao().getAreaConhecimento());
-			correcao.setNivelDificuldade(resposta.getQuestao().getNivelDificuldade());
-			correcao.setAssuntos(resposta.getQuestao().getAssuntos());
-			
-			double notaQuestaoResposta = 0;
-			TipoQuestao tipoQuestao = resposta.getQuestao().getTipoQuestao();
-			
-			correcao.setTipoQuestao(tipoQuestao);
-			
-			if (tipoQuestao == TipoQuestao.ABERTA) {
-				
-				notaQuestaoResposta = 0;
-				correcao.setNotaCalculada(new Float(0));
-				
-			} else if (tipoQuestao == TipoQuestao.ESCOLHA_UNICA) {
-				List<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
-				
-				notaQuestaoResposta = resposta.getRespostas().stream().allMatch(resp -> {
-					return resp.equals(gabarito.iterator().next());
-				}) ? 1 : 0;
-				
-				correcao.setGabarito(gabarito);
-				correcao.setRespostas(resposta.getRespostas());
-				
-				correcao.setNotaCalculada(new Float(notaQuestaoResposta));
-				correcao.setQuestaoCorreta(notaQuestaoResposta > 0);
-				
-				
-			} else if (tipoQuestao == TipoQuestao.MULTIPLA_ESCOLHA) {
-				
-				List<AlternativaQuestao> gabarito = resposta.getQuestao().getGabarito();
-				List<AlternativaQuestao> respostasCorretas = resposta.getRespostas().stream().filter(resp -> {
-					return gabarito.contains(resp);
-				}).collect(Collectors.toList());
-				List<AlternativaQuestao> respostasErradas = resposta.getRespostas().stream().filter(resp -> {
-					return !gabarito.contains(resp);
-				}).collect(Collectors.toList());
-				double saldo = respostasCorretas.size() - respostasErradas.size();
-				if(saldo > 0) {
-					notaQuestaoResposta = saldo / gabarito.size();
-				}
-				
-				correcao.setGabarito(gabarito);
-				correcao.setRespostas(resposta.getRespostas());
-				correcao.setNotaCalculada(new Float(notaQuestaoResposta));
+		respostas
+				.stream()
+				.parallel()
+				.forEach(
+						resposta -> {
 
-				correcao.setQuestaoCorreta(notaQuestaoResposta == 1.0);
+							CorrecaoProva correcao = new CorrecaoProva(this,
+									resposta.getQuestao());
+							correcao.setAreaConhecimento(resposta.getQuestao()
+									.getAreaConhecimento());
+							correcao.setNivelDificuldade(resposta.getQuestao()
+									.getNivelDificuldade());
+							correcao.setAssuntos(resposta.getQuestao()
+									.getAssuntos());
 
-				correcao.setQuestaoParcialmentecorreta((notaQuestaoResposta > 0) &&  (notaQuestaoResposta < 1.0));
-				
-			}
-			result.add(correcao);
-		});
-		
+							double notaQuestaoResposta = 0;
+							TipoQuestao tipoQuestao = resposta.getQuestao()
+									.getTipoQuestao();
+
+							correcao.setTipoQuestao(tipoQuestao);
+
+							if (tipoQuestao == TipoQuestao.ABERTA) {
+
+								notaQuestaoResposta = 0;
+								correcao.setNotaCalculada(new Float(0));
+
+							} else if (tipoQuestao == TipoQuestao.ESCOLHA_UNICA) {
+								List<AlternativaQuestao> gabarito = resposta
+										.getQuestao().getGabarito();
+
+								notaQuestaoResposta = resposta
+										.getRespostas()
+										.stream()
+										.allMatch(
+												resp -> {
+													return resp.equals(gabarito
+															.iterator().next());
+												}) ? 1 : 0;
+
+								correcao.setGabarito(gabarito);
+								correcao.setRespostas(resposta.getRespostas());
+
+								correcao.setNotaCalculada(new Float(
+										notaQuestaoResposta));
+								correcao.setQuestaoCorreta(notaQuestaoResposta > 0);
+
+							} else if (tipoQuestao == TipoQuestao.MULTIPLA_ESCOLHA) {
+
+								List<AlternativaQuestao> gabarito = resposta
+										.getQuestao().getGabarito();
+								List<AlternativaQuestao> respostasCorretas = resposta
+										.getRespostas().stream()
+										.filter(resp -> {
+											return gabarito.contains(resp);
+										}).collect(Collectors.toList());
+								List<AlternativaQuestao> respostasErradas = resposta
+										.getRespostas().stream()
+										.filter(resp -> {
+											return !gabarito.contains(resp);
+										}).collect(Collectors.toList());
+								double saldo = respostasCorretas.size()
+										- respostasErradas.size();
+								if (saldo > 0) {
+									notaQuestaoResposta = saldo
+											/ gabarito.size();
+								}
+
+								correcao.setGabarito(gabarito);
+								correcao.setRespostas(resposta.getRespostas());
+								correcao.setNotaCalculada(new Float(
+										notaQuestaoResposta));
+
+								correcao.setQuestaoCorreta(notaQuestaoResposta == 1.0);
+
+								correcao.setQuestaoParcialmentecorreta((notaQuestaoResposta > 0)
+										&& (notaQuestaoResposta < 1.0));
+
+							}
+							result.add(correcao);
+						});
+
 		return result;
 	}
 }

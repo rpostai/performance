@@ -12,16 +12,17 @@ import javax.persistence.TypedQuery;
 
 import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
+import org.junit.Ignore;
 import org.junit.Test;
 
+import com.rp.performance.domain.AlternativaQuestao;
+import com.rp.performance.domain.Candidato;
+import com.rp.performance.domain.ExecucaoProva;
+import com.rp.performance.domain.ExecucaoProvaResposta;
+import com.rp.performance.domain.Prova;
+import com.rp.performance.domain.Questao;
 import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
 import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.Questao;
-import com.rp.performance.domain.prova.execucao.Candidato;
-import com.rp.performance.domain.prova.execucao.ExecucaoProva;
-import com.rp.performance.domain.prova.execucao.ExecucaoProvaResposta;
 import com.rp.performance.repository.jpa.prova.execucao.ExecucaoProvaRepository;
 
 public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
@@ -165,6 +166,7 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 	
 	@Test
 	@UsingDataSet({ "fixture.xml", "candidato.xml", "execucao_prova.xml" })
+	@Ignore
 	public void deveExecutareCorrigirProvaComNotaZero() {
 		setDataAtual("2014-01-02 15:00:00");
 		ExecucaoProva e = em.find(ExecucaoProva.class, 100000l);

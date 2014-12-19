@@ -10,8 +10,8 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.rp.performance.domain.prova.execucao.ExecucaoProva;
-import com.rp.performance.domain.prova.execucao.ExecucaoProvaResposta;
+import com.rp.performance.domain.ExecucaoProva;
+import com.rp.performance.domain.ExecucaoProvaResposta;
 import com.rp.performance.repository.jpa.prova.execucao.ExecucaoProvaRespostaRepository;
 
 public class ExecucaoProvaRespostaRepositoryBeanTest extends

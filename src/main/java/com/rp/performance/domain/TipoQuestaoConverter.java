@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import javax.persistence.AttributeConverter;
 import javax.persistence.Converter;

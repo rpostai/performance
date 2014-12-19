@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
@@ -10,14 +10,14 @@ import javax.persistence.Table;
 import org.apache.commons.lang.builder.EqualsBuilder;
 import org.apache.commons.lang.builder.HashCodeBuilder;
 
-import com.rp.performance.domain.BaseEntity;
-
 @Entity
 @Table(name = "questao_alternativa")
 public class AlternativaQuestao extends BaseEntity {
 
+	private static final long serialVersionUID = 616271021734789785L;
+	
 	@ManyToOne
-	@JoinColumn(name = "questao_id")
+	@JoinColumn(name="questao_id")
 	private Questao questao;
 
 	@Column(name = "descricao")
@@ -28,14 +28,6 @@ public class AlternativaQuestao extends BaseEntity {
 	// @CollectionTable(name = "questao_alternativa_anexos", joinColumns =
 	// @JoinColumn(name = "questao_alternativa_id"))
 	// List<String> anexo = new ArrayList<>();
-
-	public Questao getQuestao() {
-		return questao;
-	}
-
-	public void setQuestao(Questao questao) {
-		this.questao = questao;
-	}
 
 	public String getDescricao() {
 		return descricao;
@@ -54,7 +46,8 @@ public class AlternativaQuestao extends BaseEntity {
 	public boolean equals(Object obj) {
 		if (obj instanceof AlternativaQuestao) {
 			AlternativaQuestao q = (AlternativaQuestao) obj;
-			return new EqualsBuilder().append(q.getId(), this.getId()).isEquals();
+			return new EqualsBuilder().append(q.getId(), this.getId())
+					.isEquals();
 		}
 		return false;
 	}

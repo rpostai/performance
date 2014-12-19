@@ -1,8 +1,7 @@
-package com.rp.performance.domain.prova.execucao;
+package com.rp.performance.domain;
 
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Set;
 
 import javax.persistence.Column;
 import javax.persistence.Convert;
@@ -15,21 +14,14 @@ import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
-import com.rp.performance.domain.BaseEntity;
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.AreaConhecimento;
-import com.rp.performance.domain.prova.Assunto;
-import com.rp.performance.domain.prova.NivelDificuldade;
-import com.rp.performance.domain.prova.Questao;
-import com.rp.performance.domain.prova.TipoQuestao;
-import com.rp.performance.domain.prova.TipoQuestaoConverter;
-
 @Entity
 @Table(name = "correcao_prova")
 public class CorrecaoProva extends BaseEntity {
 
+	private static final long serialVersionUID = 6999001841648337938L;
+
 	@ManyToOne
-	@JoinColumn(name = "execucao_prova_id")
+	@JoinColumn(name = "execucao_prova_id", nullable=false)
 	private ExecucaoProva execucao;
 
 	@ManyToOne
@@ -40,7 +32,7 @@ public class CorrecaoProva extends BaseEntity {
 	@JoinTable(name = "correcao_prova_assunto", joinColumns = @JoinColumn(name = "correcao_prova_id"), inverseJoinColumns = @JoinColumn(name = "assunto_id"))
 	private List<Assunto> assuntos = new ArrayList<Assunto>();
 
-	@Convert(attributeName = "tipo_questao", converter = TipoQuestaoConverter.class)
+	@Convert(converter = TipoQuestaoConverter.class)
 	@Column(name = "tipo_questao", length = 1, nullable = false)
 	private TipoQuestao tipoQuestao;
 

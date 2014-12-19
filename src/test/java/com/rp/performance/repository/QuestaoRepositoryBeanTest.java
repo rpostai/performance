@@ -10,12 +10,12 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
 
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.AreaConhecimento;
-import com.rp.performance.domain.prova.Assunto;
-import com.rp.performance.domain.prova.NivelDificuldade;
-import com.rp.performance.domain.prova.Questao;
-import com.rp.performance.domain.prova.TipoQuestao;
+import com.rp.performance.domain.AlternativaQuestao;
+import com.rp.performance.domain.AreaConhecimento;
+import com.rp.performance.domain.Assunto;
+import com.rp.performance.domain.NivelDificuldade;
+import com.rp.performance.domain.Questao;
+import com.rp.performance.domain.TipoQuestao;
 import com.rp.performance.repository.jpa.prova.QuestaoRepository;
 
 public class QuestaoRepositoryBeanTest extends AbstractRepositoryTest {

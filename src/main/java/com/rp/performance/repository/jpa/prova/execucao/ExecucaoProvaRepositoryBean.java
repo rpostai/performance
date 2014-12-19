@@ -11,10 +11,10 @@ import javax.persistence.TypedQuery;
 
 import org.apache.commons.collections.CollectionUtils;
 
+import com.rp.performance.domain.Candidato;
+import com.rp.performance.domain.ExecucaoProva;
+import com.rp.performance.domain.Prova;
 import com.rp.performance.domain.exceptions.VoucherNaoEncontradoException;
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.execucao.Candidato;
-import com.rp.performance.domain.prova.execucao.ExecucaoProva;
 import com.rp.performance.repository.jpa.BaseRepository;
 import com.rp.performance.repository.jpa.prova.ProvaRepository;
 

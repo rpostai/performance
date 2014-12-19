@@ -12,9 +12,9 @@ import org.jboss.shrinkwrap.api.spec.WebArchive;
 import org.junit.runner.RunWith;
 
 import com.rp.performance.domain.BaseEntity;
+import com.rp.performance.domain.Candidato;
+import com.rp.performance.domain.Prova;
 import com.rp.performance.domain.exceptions.BaseException;
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.execucao.Candidato;
 import com.rp.performance.repository.jpa.BaseRepository;
 import com.rp.performance.repository.jpa.listener.RepositoryEntityListener;
 import com.rp.performance.repository.jpa.prova.AreaConhecimentoRepository;

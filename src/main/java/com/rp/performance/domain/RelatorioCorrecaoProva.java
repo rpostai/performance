@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova.execucao;
+package com.rp.performance.domain;
 
 import java.math.BigDecimal;
 import java.math.RoundingMode;
@@ -8,10 +8,6 @@ import java.util.Optional;
 import java.util.stream.Collectors;
 
 import org.apache.commons.collections.CollectionUtils;
-
-import com.rp.performance.domain.prova.AreaConhecimento;
-import com.rp.performance.domain.prova.Assunto;
-import com.rp.performance.domain.prova.NivelDificuldade;
 
 public class RelatorioCorrecaoProva {
 
@@ -59,7 +55,7 @@ public class RelatorioCorrecaoProva {
 			Relatorio relatorio = new Relatorio(assunto);
 			
 			List<CorrecaoProva> correcoesPorAssunto = items.stream().filter(correcao -> {
-				return correcao.getNivelDificuldade().equals(assunto);
+				return correcao.getAssuntos().contains(assunto);
 			}).collect(Collectors.toList());
 			
 			relatorio.setTotalQuestoes(correcoesPorAssunto.size());

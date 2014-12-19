@@ -1,15 +1,17 @@
 package com.rp.performance.domain;
 
+import java.io.Serializable;
+
 import javax.persistence.Column;
 import javax.persistence.Convert;
 import javax.persistence.Embeddable;
-import javax.persistence.EnumType;
-import javax.persistence.Enumerated;
 import javax.validation.constraints.NotNull;
 
 @Embeddable
-public class Telefone {
+public class Telefone implements Serializable {
 	
+	private static final long serialVersionUID = -2820972935269241843L;
+
 	@Column(name="tipo_telefone")
 	@Convert(converter=TipoTelefoneConverter.class)
 	private TipoTelefone tipoTelefone;

@@ -4,8 +4,8 @@ import javax.ejb.Stateless;
 import javax.persistence.NoResultException;
 import javax.persistence.TypedQuery;
 
+import com.rp.performance.domain.Prova;
 import com.rp.performance.domain.exceptions.VoucherNaoEncontradoException;
-import com.rp.performance.domain.prova.Prova;
 import com.rp.performance.repository.jpa.BaseRepository;
 
 @Stateless

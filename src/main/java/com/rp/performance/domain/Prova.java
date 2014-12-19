@@ -1,9 +1,11 @@
-package com.rp.performance.domain.prova;
+package com.rp.performance.domain;
 
 import java.util.Calendar;
 import java.util.Date;
-import java.util.LinkedList;
+import java.util.HashSet;
 import java.util.List;
+import java.util.Set;
+import java.util.stream.Collectors;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -17,12 +19,11 @@ import javax.persistence.Table;
 import javax.validation.constraints.Max;
 import javax.validation.constraints.Min;
 
-import com.rp.performance.domain.BaseEntity;
-import com.rp.performance.domain.DateUtils;
-
 @Entity
 @Table(name = "prova")
 public class Prova extends BaseEntity {
+
+	private static final long serialVersionUID = 8800743897823648900L;
 
 	@Column(name = "descricao", nullable = false, length = 100)
 	private String descricao;
@@ -42,7 +43,7 @@ public class Prova extends BaseEntity {
 
 	@ManyToMany(cascade = { CascadeType.PERSIST, CascadeType.MERGE })
 	@JoinTable(name = "prova_questao", joinColumns = @JoinColumn(name = "prova_id"), inverseJoinColumns = @JoinColumn(name = "questao_id"))
-	private List<Questao> questoes = new LinkedList<Questao>();
+	private Set<Questao> questoes = new HashSet<Questao>();
 
 	public String getDescricao() {
 		return descricao;
@@ -53,7 +54,7 @@ public class Prova extends BaseEntity {
 	}
 
 	public List<Questao> getQuestoes() {
-		return questoes;
+		return questoes.stream().collect(Collectors.toList());
 	}
 
 	public void addQuestao(Questao questao) {
@@ -116,7 +117,6 @@ public class Prova extends BaseEntity {
 				AlternativaQuestao a = new AlternativaQuestao();
 				a.setDescricao(alternativa.getDescricao());
 				a.setEmpresa(a.getEmpresa());
-				a.setQuestao(q);
 				q.addAlternativa(a);
 			});
 			
@@ -124,7 +124,6 @@ public class Prova extends BaseEntity {
 				AlternativaQuestao g = new AlternativaQuestao();
 				g.setDescricao(gabarito.getDescricao());
 				g.setEmpresa(gabarito.getEmpresa());
-				g.setQuestao(q);
 				q.addGabarito(g);
 			});
 			

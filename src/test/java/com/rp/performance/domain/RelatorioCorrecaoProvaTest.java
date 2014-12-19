@@ -10,20 +10,8 @@ import org.junit.Assert;
 import org.junit.Before;
 import org.junit.Test;
 
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.AreaConhecimento;
-import com.rp.performance.domain.prova.Assunto;
-import com.rp.performance.domain.prova.NivelDificuldade;
-import com.rp.performance.domain.prova.Prova;
-import com.rp.performance.domain.prova.Questao;
-import com.rp.performance.domain.prova.TipoQuestao;
-import com.rp.performance.domain.prova.execucao.Candidato;
-import com.rp.performance.domain.prova.execucao.CorrecaoProva;
-import com.rp.performance.domain.prova.execucao.ExecucaoProva;
-import com.rp.performance.domain.prova.execucao.ExecucaoProvaResposta;
-import com.rp.performance.domain.prova.execucao.RelatorioCorrecaoProva;
-import com.rp.performance.domain.prova.execucao.RelatorioCorrecaoProva.Relatorio;
-import com.rp.performance.domain.prova.execucao.RelatorioCorrecaoProva.RelatorioAreaConhecimento;
+import com.rp.performance.domain.RelatorioCorrecaoProva.Relatorio;
+import com.rp.performance.domain.RelatorioCorrecaoProva.RelatorioAreaConhecimento;
 
 public class RelatorioCorrecaoProvaTest {
 	
@@ -188,22 +176,22 @@ public class RelatorioCorrecaoProvaTest {
 		AlternativaQuestao aq1 = new AlternativaQuestao();
 		aq1.setId(17l);
 		aq1.setDescricao("Poliformismo é a capacidade que um objeto tem de assumir diversas formas em tempo de execução");
-		aq1.setQuestao(q1);
+		//aq1.setQuestao(q1);
 
 		AlternativaQuestao aq2 = new AlternativaQuestao();
 		aq2.setId(18l);
 		aq2.setDescricao("Polimorfismo está intimamente ligado ao conceito de herança");
-		aq2.setQuestao(q1);
+		//aq2.setQuestao(q1);
 
 		AlternativaQuestao aq3 = new AlternativaQuestao();
 		aq3.setId(19l);
 		aq3.setDescricao("Para implementar polimorfismo é obrigatório o uso de interfaces");
-		aq3.setQuestao(q1);
+		//aq3.setQuestao(q1);
 
 		AlternativaQuestao aq4 = new AlternativaQuestao();
 		aq4.setId(20l);
 		aq4.setDescricao("Um objeto polimorfico em Java pode assumir características de vários objetos através de herança múltipla");
-		aq4.setQuestao(q1);
+		//aq4.setQuestao(q1);
 
 		q1.addAlternativa(aq1);
 		q1.addAlternativa(aq2);
@@ -227,22 +215,22 @@ public class RelatorioCorrecaoProvaTest {
 		AlternativaQuestao aq1 = new AlternativaQuestao();
 		aq1.setId(13l);
 		aq1.setDescricao("(a) quando um sistema é distribuído");
-		aq1.setQuestao(q1);
+		//aq1.setQuestao(q1);
 
 		AlternativaQuestao aq2 = new AlternativaQuestao();
 		aq2.setId(14l);
 		aq2.setDescricao("(b) quando um sistema é transacional");
-		aq2.setQuestao(q1);
+		//aq2.setQuestao(q1);
 
 		AlternativaQuestao aq3 = new AlternativaQuestao();
 		aq3.setId(15l);
 		aq3.setDescricao("(c) quando você está desenvolvendo um sistema on somente são servidas páginas estáticas");
-		aq3.setQuestao(q1);
+		//aq3.setQuestao(q1);
 
 		AlternativaQuestao aq4 = new AlternativaQuestao();
 		aq4.setId(16l);
 		aq4.setDescricao("(d) quando requisitos relacionados a segurança de acesso aos serviços oferecidos pelo sistema são essenciais");
-		aq4.setQuestao(q1);
+		//aq4.setQuestao(q1);
 
 		q1.addAlternativa(aq1);
 		q1.addAlternativa(aq2);
@@ -267,22 +255,22 @@ public class RelatorioCorrecaoProvaTest {
 		AlternativaQuestao aq1 = new AlternativaQuestao();
 		aq1.setId(9l);
 		aq1.setDescricao("Tornar uma instância de objeto única");
-		aq1.setQuestao(q1);
+		//aq1.setQuestao(q1);
 
 		AlternativaQuestao aq2 = new AlternativaQuestao();
 		aq2.setId(10l);
 		aq2.setDescricao("Tornar uma instância de objeto única por JVM");
-		aq2.setQuestao(q1);
+		//aq2.setQuestao(q1);
 
 		AlternativaQuestao aq3 = new AlternativaQuestao();
 		aq3.setId(11l);
 		aq3.setDescricao("Tornar uma classe controlada pela JVM");
-		aq3.setQuestao(q1);
+		//aq3.setQuestao(q1);
 
 		AlternativaQuestao aq4 = new AlternativaQuestao();
 		aq4.setId(12l);
 		aq4.setDescricao("Permitir que uma classe tenha acesso paralelo");
-		aq4.setQuestao(q1);
+		//aq4.setQuestao(q1);
 
 		q1.addAlternativa(aq1);
 		q1.addAlternativa(aq2);
@@ -305,22 +293,22 @@ public class RelatorioCorrecaoProvaTest {
 		AlternativaQuestao aq1 = new AlternativaQuestao();
 		aq1.setId(5l);
 		aq1.setDescricao("Tornar uma classe POJO em um EJB");
-		aq1.setQuestao(q1);
+		//aq1.setQuestao(q1);
 
 		AlternativaQuestao aq2 = new AlternativaQuestao();
 		aq2.setId(6l);
 		aq2.setDescricao("Tornar uma classe POJO em um objeto Singleton");
-		aq2.setQuestao(q1);
+		//aq2.setQuestao(q1);
 
 		AlternativaQuestao aq3 = new AlternativaQuestao();
 		aq3.setId(7l);
 		aq3.setDescricao("Tornar uma classe POJO em um Webservice REST");
-		aq3.setQuestao(q1);
+		//aq3.setQuestao(q1);
 
 		AlternativaQuestao aq4 = new AlternativaQuestao();
 		aq4.setId(8l);
 		aq4.setDescricao("Nenhuma das alternativas");
-		aq4.setQuestao(q1);
+		//aq4.setQuestao(q1);
 
 		q1.addAlternativa(aq1);
 		q1.addAlternativa(aq2);
@@ -343,22 +331,22 @@ public class RelatorioCorrecaoProvaTest {
 		AlternativaQuestao aq1 = new AlternativaQuestao();
 		aq1.setId(1l);
 		aq1.setDescricao("Tornar um Stateless Session Bean transacional");
-		aq1.setQuestao(q1);
+		//aq1.setQuestao(q1);
 
 		AlternativaQuestao aq2 = new AlternativaQuestao();
 		aq2.setId(2l);
 		aq2.setDescricao("Criar uma nova transação sempre que o método deste classe for chamado");
-		aq2.setQuestao(q1);
+		//aq2.setQuestao(q1);
 
 		AlternativaQuestao aq3 = new AlternativaQuestao();
 		aq3.setId(3l);
 		aq3.setDescricao("Solicitar que o cliente crie uma transação antes de chamar o método deste EJB");
-		aq3.setQuestao(q1);
+		//aq3.setQuestao(q1);
 
 		AlternativaQuestao aq4 = new AlternativaQuestao();
 		aq4.setId(4l);
 		aq4.setDescricao("Nenhuma das alternativas");
-		aq4.setQuestao(q1);
+		//aq4.setQuestao(q1);
 
 		q1.addAlternativa(aq1);
 		q1.addAlternativa(aq2);
@@ -431,17 +419,22 @@ public class RelatorioCorrecaoProvaTest {
 		Assert.assertEquals("JPA", ((Assunto)relatorioPorAssunto.get(2).getAgrupador()).getAssunto());
 		Assert.assertEquals("Orientação a Objetos", ((Assunto)relatorioPorAssunto.get(3).getAgrupador()).getAssunto());
 		
-//		Assert.assertEquals(2, relatorioPorAssunto.get(0).getTotalQuestoes());
-//		Assert.assertEquals(new BigDecimal("0.67"), relatorioPorAssunto.get(0).getNotaFinalAbsoluta());
-//		Assert.assertEquals(new BigDecimal("0.34"), relatorioPorAssunto.get(0).getNotaFinalPercentual());
-//		
-//		Assert.assertEquals(1, relatorioPorAssunto.get(1).getTotalQuestoes());
-//		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(1).getNotaFinalAbsoluta());
-//		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(1).getNotaFinalPercentual());
-//		
-//		Assert.assertEquals(2, relatorioPorAssunto.get(2).getTotalQuestoes());
-//		Assert.assertEquals(new BigDecimal("2.00"), relatorioPorAssunto.get(2).getNotaFinalAbsoluta());
-//		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(2).getNotaFinalPercentual());
+		Assert.assertEquals(2, relatorioPorAssunto.get(0).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("0.67"), relatorioPorAssunto.get(0).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("0.34"), relatorioPorAssunto.get(0).getNotaFinalPercentual());
+		
+		Assert.assertEquals(1, relatorioPorAssunto.get(1).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(1).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(1).getNotaFinalPercentual());
+		
+		Assert.assertEquals(1, relatorioPorAssunto.get(2).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(2).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(2).getNotaFinalPercentual());
+		
+		Assert.assertEquals(1, relatorioPorAssunto.get(3).getTotalQuestoes());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(3).getNotaFinalAbsoluta());
+		Assert.assertEquals(new BigDecimal("1.00"), relatorioPorAssunto.get(3).getNotaFinalPercentual());
+
 		
 	}
 

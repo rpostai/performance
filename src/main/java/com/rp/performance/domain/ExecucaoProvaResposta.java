@@ -1,4 +1,4 @@
-package com.rp.performance.domain.prova.execucao;
+package com.rp.performance.domain;
 
 import java.util.List;
 
@@ -9,21 +9,20 @@ import javax.persistence.JoinTable;
 import javax.persistence.Lob;
 import javax.persistence.ManyToOne;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.persistence.Table;
-
-import com.rp.performance.domain.BaseEntity;
-import com.rp.performance.domain.prova.AlternativaQuestao;
-import com.rp.performance.domain.prova.Questao;
 
 @Entity
 @Table(name = "execucao_prova_resposta")
 public class ExecucaoProvaResposta extends BaseEntity {
 
+	private static final long serialVersionUID = -6008440178581238842L;
+
 	@ManyToOne
 	@JoinColumn(name = "execucao_prova_id")
 	private ExecucaoProva execucaoProva;
 
-	@ManyToOne
+	@OneToOne
 	@JoinColumn(name = "questao_id")
 	private Questao questao;
 
@@ -61,6 +60,52 @@ public class ExecucaoProvaResposta extends BaseEntity {
 
 	public String getRespostaAberta() {
 		return respostaAberta;
+	}
+
+	@Override
+	public int hashCode() {
+		final int prime = 31;
+		int result = 1;
+		result = prime * result
+				+ ((execucaoProva == null) ? 0 : execucaoProva.hashCode());
+		result = prime * result + ((questao == null) ? 0 : questao.hashCode());
+		result = prime * result
+				+ ((respostaAberta == null) ? 0 : respostaAberta.hashCode());
+		result = prime * result
+				+ ((respostas == null) ? 0 : respostas.hashCode());
+		return result;
+	}
+
+	@Override
+	public boolean equals(Object obj) {
+		if (this == obj)
+			return true;
+		if (obj == null)
+			return false;
+		if (getClass() != obj.getClass())
+			return false;
+		ExecucaoProvaResposta other = (ExecucaoProvaResposta) obj;
+		if (execucaoProva == null) {
+			if (other.execucaoProva != null)
+				return false;
+		} else if (!execucaoProva.equals(other.execucaoProva))
+			return false;
+		if (questao == null) {
+			if (other.questao != null)
+				return false;
+		} else if (!questao.equals(other.questao))
+			return false;
+		if (respostaAberta == null) {
+			if (other.respostaAberta != null)
+				return false;
+		} else if (!respostaAberta.equals(other.respostaAberta))
+			return false;
+		if (respostas == null) {
+			if (other.respostas != null)
+				return false;
+		} else if (!respostas.equals(other.respostas))
+			return false;
+		return true;
 	}
 
 	public void setRespostaAberta(String respostaAberta) {

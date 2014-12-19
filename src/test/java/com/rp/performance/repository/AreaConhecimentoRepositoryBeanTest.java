@@ -9,17 +9,15 @@ import org.jboss.arquillian.persistence.UsingDataSet;
 import org.junit.Assert;
 import org.junit.Test;
 
+import com.rp.performance.domain.AreaConhecimento;
+import com.rp.performance.domain.Assunto;
 import com.rp.performance.domain.Empresa;
-import com.rp.performance.domain.prova.AreaConhecimento;
-import com.rp.performance.domain.prova.Assunto;
 import com.rp.performance.repository.jpa.prova.AreaConhecimentoRepository;
 
 public class AreaConhecimentoRepositoryBeanTest extends AbstractRepositoryTest {
 
 	@EJB
 	private AreaConhecimentoRepository repository;
-
-	private Empresa empresa;
 
 	@Test
 	@UsingDataSet("fixture.xml")
