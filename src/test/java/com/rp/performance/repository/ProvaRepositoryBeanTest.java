@@ -11,6 +11,7 @@ import com.rp.performance.domain.AreaConhecimento;
 import com.rp.performance.domain.Assunto;
 import com.rp.performance.domain.NivelDificuldade;
 import com.rp.performance.domain.Prova;
+import com.rp.performance.domain.ProvaQuestao;
 import com.rp.performance.domain.Questao;
 import com.rp.performance.domain.TipoQuestao;
 import com.rp.performance.repository.jpa.prova.ProvaRepository;
@@ -32,7 +33,8 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		prova.setAreaConhecimento(arquitetura);
 
 		Questao q1 = em.find(Questao.class, 100000l);
-		prova.addQuestao(q1);
+		ProvaQuestao pq1 = new ProvaQuestao(1,1,q1);
+		prova.addQuestao(pq1);
 
 		repository.salvar(prova);
 
@@ -93,8 +95,8 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		prova.setTempoDuracaoEmMinutos(120);
 
 		Questao q1 = criaQuestao();
-
-		prova.addQuestao(q1);
+		ProvaQuestao pq1 = new ProvaQuestao(1, 1, q1);
+		prova.addQuestao(pq1);
 
 		repository.salvar(prova);
 
@@ -103,7 +105,7 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		Prova p = repository.getProvaComAlternativas(prova.getId());
 		Assert.assertEquals(p.getDescricao(), prova.getDescricao());
 		Assert.assertEquals(1, p.getQuestoes().size());
-		Questao q = p.getQuestoes().iterator().next();
+		Questao q = p.getQuestoes().iterator().next().getQuestao();
 		Assert.assertEquals(2, q.getAnexos().size());
 	}
 
@@ -119,8 +121,8 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		prova.setTempoDuracaoEmMinutos(120);
 
 		Questao q1 = criaQuestao();
-
-		prova.addQuestao(q1);
+		ProvaQuestao pq1 = new ProvaQuestao(1,1,q1);
+		prova.addQuestao(pq1);
 
 		repository.salvar(prova);
 
@@ -129,7 +131,7 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		Prova p = repository.get(prova.getId());
 		Assert.assertEquals(p.getDescricao(), prova.getDescricao());
 		Assert.assertEquals(1, p.getQuestoes().size());
-		Questao q = p.getQuestoes().iterator().next();
+		Questao q = p.getQuestoes().iterator().next().getQuestao();
 		Assert.assertEquals(1, q.getGabarito().size());
 		Assert.assertEquals("Iterator, Builder, Singleton", q.getGabarito()
 				.iterator().next().getDescricao());
@@ -144,7 +146,7 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 				.getDescricao());
 		Assert.assertEquals("JEE 7.1", p.getDescricao());
 		Assert.assertEquals(1, p.getQuestoes().size());
-		Questao q = p.getQuestoes().iterator().next();
+		Questao q = p.getQuestoes().iterator().next().getQuestao();
 		Assert.assertEquals("O que significa JSON?", q.getQuestao());
 		Assert.assertEquals("Médio", q.getNivelDificuldade().getDescricao());
 		Assert.assertEquals(5, q.getAlternativas().size());
@@ -162,8 +164,8 @@ public class ProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		Assert.assertEquals(versao.getQuestoes().size(), matriz.getQuestoes().size());
 		Assert.assertEquals(versao.getOrientacoes(), matriz.getOrientacoes());
 		Assert.assertEquals(versao.getTempoDuracaoEmMinutos(), matriz.getTempoDuracaoEmMinutos());
-		Questao qm = matriz.getQuestoes().iterator().next();
-		Questao qv = versao.getQuestoes().iterator().next();
+		Questao qm = matriz.getQuestoes().iterator().next().getQuestao();
+		Questao qv = versao.getQuestoes().iterator().next().getQuestao();
 		
 		Assert.assertEquals(qv.getQuestao(), qm.getQuestao());
 		Assert.assertNotEquals(qv.getId(), qm.getId());

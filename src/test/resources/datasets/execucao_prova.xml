@@ -33,11 +33,11 @@
 	
 	<prova id="100000" descricao="JEE 7" tempo_duracao="180" orientacoes = "Assinale as alternativas corretas" area_conhecimento_id="100000" data_cadastro="2014-01-01"/>
 	
-	<prova_questao prova_id="100000" questao_id="100000"/>
+	<prova_questao id="10000" prova_id="100000" questao_id="100000" ordem="1" peso="1" data_cadastro="2014-01-01"/>
 	
 	<prova id="100001" descricao="JEE 7.1" tempo_duracao="180" orientacoes = "Assinale as alternativas corretas 2" area_conhecimento_id="100000" data_cadastro="2014-01-01"/>
 	
-	<prova_questao prova_id="100001" questao_id="100000"/>
+	<prova_questao id="10001" prova_id="100001" questao_id="100000" ordem="1" peso="1" data_cadastro="2014-01-01"/>
 	
 	<execucao_prova id="100000" voucher="98492727478874" data_cadastro="2014-01-01" prova_id="100001" candidato_id="100001" data_abertura="2014-01-01" data_validade="2014-01-03"/> 
 	

@@ -243,7 +243,6 @@ public class ExecucaoProva extends BaseEntity {
 		List<CorrecaoProva> result = new ArrayList<CorrecaoProva>();
 		respostas
 				.stream()
-				.parallel()
 				.forEach(
 						resposta -> {
 

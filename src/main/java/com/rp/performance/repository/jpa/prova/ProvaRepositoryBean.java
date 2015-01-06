@@ -21,7 +21,8 @@ public class ProvaRepositoryBean extends BaseRepository<Prova> implements
 		StringBuilder sb = new StringBuilder();
 		sb.append("select distinct p from Prova p ");
 		sb.append("  join fetch p.questoes q");
-		sb.append("  left join fetch q.alternativas");
+		sb.append("  join fetch q.questao questao");
+		sb.append("  left join fetch questao.alternativas");
 		// sb.append("  left join fetch q.anexo");
 		sb.append(" where p.id = :id");
 
@@ -59,10 +60,12 @@ public class ProvaRepositoryBean extends BaseRepository<Prova> implements
 		sb.append("select o from Prova o");
 		sb.append("  join fetch o.areaConhecimento area");
 		sb.append("  join fetch o.questoes  q    ");
-		sb.append("  join fetch q.nivelDificuldade dif ");
-		sb.append("  join fetch q.assuntos ass ");
-		sb.append("  left join fetch q.alternativas alt ");
-		sb.append("  left join fetch q.gabarito g");
+		sb.append("  join fetch q.questao   questao    ");
+		
+		sb.append("  join fetch questao.nivelDificuldade dif ");
+		sb.append("  join fetch questao.assuntos ass ");
+		sb.append("  left join fetch questao.alternativas alt ");
+		sb.append("  left join fetch questao.gabarito g");
 		sb.append("  where o.id = :prova");
 		TypedQuery<Prova> prova = em.createQuery(sb.toString(), Prova.class);
 		try {

@@ -5,7 +5,6 @@ import java.util.Calendar;
 import java.util.Iterator;
 import java.util.List;
 import java.util.Optional;
-import java.util.Set;
 
 import javax.ejb.EJB;
 import javax.persistence.TypedQuery;
@@ -20,6 +19,7 @@ import com.rp.performance.domain.Candidato;
 import com.rp.performance.domain.ExecucaoProva;
 import com.rp.performance.domain.ExecucaoProvaResposta;
 import com.rp.performance.domain.Prova;
+import com.rp.performance.domain.ProvaQuestao;
 import com.rp.performance.domain.Questao;
 import com.rp.performance.domain.exceptions.PrazoValidadeInvalidoException;
 import com.rp.performance.domain.exceptions.ProvaJaFinalizadaException;
@@ -142,9 +142,9 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		e.iniciarExecucao();
 		setDataAtual("2014-01-02 15:30:00");
 		
-		List<Questao> questoes = e.getProva().getQuestoes();
-		Iterator<Questao> it = questoes.iterator();
-		Questao questao1 = it.next();
+		List<ProvaQuestao> questoes = e.getProva().getQuestoes();
+		Iterator<ProvaQuestao> it = questoes.iterator();
+		Questao questao1 = it.next().getQuestao();
 		
 		ExecucaoProvaResposta resposta = new ExecucaoProvaResposta();
 		resposta.setQuestao(questao1);
@@ -173,9 +173,9 @@ public class ExecucaoProvaRepositoryBeanTest extends AbstractRepositoryTest {
 		e.iniciarExecucao();
 		setDataAtual("2014-01-02 15:30:00");
 		
-		List<Questao> questoes = e.getProva().getQuestoes();
-		Iterator<Questao> it = questoes.iterator();
-		Questao questao1 = it.next();
+		List<ProvaQuestao> questoes = e.getProva().getQuestoes();
+		Iterator<ProvaQuestao> it = questoes.iterator();
+		Questao questao1 = it.next().getQuestao();
 		
 		ExecucaoProvaResposta resposta = new ExecucaoProvaResposta();
 		resposta.setQuestao(questao1);

@@ -74,18 +74,27 @@ public class RelatorioCorrecaoProvaTest {
 		javaee.addAssunto(jpa);
 
 		Questao q1 = questao1(muitoDificil, javase, orientacaoObjetos);
+		ProvaQuestao pq1 = new ProvaQuestao(1, 1, q1);
+		
 		Questao q2 = questao2(facil, javaee, ejb);
+		ProvaQuestao pq2 = new ProvaQuestao(1, 1, q2);
+		
 		Questao q3 = questao3(facil, javaee, ejb);
+		ProvaQuestao pq3 = new ProvaQuestao(1, 1, q3);
+		
 		Questao q4 = questao4(medio, javaee, jpa);
+		ProvaQuestao pq4 = new ProvaQuestao(1, 1, q4);
+		
 		Questao q5 = questao5(medio, javaee, jdbc);
+		ProvaQuestao pq5 = new ProvaQuestao(1, 1, q5);
 
 		Prova p = new Prova();
 		p.setId(1l);
-		p.addQuestao(q1);
-		p.addQuestao(q2);
-		p.addQuestao(q3);
-		p.addQuestao(q4);
-		p.addQuestao(q5);
+		p.addQuestao(pq1);
+		p.addQuestao(pq2);
+		p.addQuestao(pq3);
+		p.addQuestao(pq4);
+		p.addQuestao(pq5);
 
 		p.setAreaConhecimento(javaee);
 		p.setDescricao("Prova Analista de Sistemas Java Júnior");
@@ -114,17 +123,17 @@ public class RelatorioCorrecaoProvaTest {
 
 		execucao.iniciarExecucao();
 
-		Iterator<Questao> questoes = p.getQuestoes().iterator();
+		Iterator<ProvaQuestao> questoes = p.getQuestoes().iterator();
 
 		// Acertou 100%
 		ExecucaoProvaResposta resposta1 = new ExecucaoProvaResposta();
-		Questao aux = questoes.next();
+		Questao aux = questoes.next().getQuestao();
 		resposta1.setQuestao(aux);
 		resposta1.setRespostas(aux.getGabarito());
 
 		// Acertou 2/3
 		ExecucaoProvaResposta resposta2 = new ExecucaoProvaResposta();
-		aux = questoes.next();
+		aux = questoes.next().getQuestao();
 		resposta2.setQuestao(aux);
 		List<AlternativaQuestao> resp2 = new ArrayList<AlternativaQuestao>();
 		resp2.add(aux.getGabarito().get(0));
@@ -133,7 +142,7 @@ public class RelatorioCorrecaoProvaTest {
 
 		// Errou
 		ExecucaoProvaResposta resposta3 = new ExecucaoProvaResposta();
-		aux = questoes.next();
+		aux = questoes.next().getQuestao();
 		resposta3.setQuestao(aux);
 		List<AlternativaQuestao> resp3 = new ArrayList<AlternativaQuestao>();
 		resp3.add(aux.getAlternativas().get(0));
@@ -141,7 +150,7 @@ public class RelatorioCorrecaoProvaTest {
 
 		// Acertou 100%
 		ExecucaoProvaResposta resposta4 = new ExecucaoProvaResposta();
-		aux = questoes.next();
+		aux = questoes.next().getQuestao();
 		resposta4.setQuestao(aux);
 		List<AlternativaQuestao> resp4 = new ArrayList<AlternativaQuestao>();
 		resp4.add(aux.getGabarito().get(0));
@@ -149,7 +158,7 @@ public class RelatorioCorrecaoProvaTest {
 
 		// Acertou 100%
 		ExecucaoProvaResposta resposta5 = new ExecucaoProvaResposta();
-		aux = questoes.next();
+		aux = questoes.next().getQuestao();
 		resposta5.setQuestao(aux);
 		List<AlternativaQuestao> resp5 = new ArrayList<AlternativaQuestao>();
 		resp5.add(aux.getGabarito().get(0));
@@ -167,6 +176,7 @@ public class RelatorioCorrecaoProvaTest {
 	private Questao questao1(NivelDificuldade muitoDificil,
 			AreaConhecimento javase, Assunto orientacaoObjetos) {
 		Questao q1 = new Questao();
+		q1.setId(1l);
 		q1.setTipoQuestao(TipoQuestao.MULTIPLA_ESCOLHA);
 		q1.setAreaConhecimento(javase);
 		q1.addAssunto(orientacaoObjetos);
@@ -206,6 +216,7 @@ public class RelatorioCorrecaoProvaTest {
 	private Questao questao2(NivelDificuldade nivelDificuldade,
 			AreaConhecimento area, Assunto assunto) {
 		Questao q1 = new Questao();
+		q1.setId(2l);
 		q1.setTipoQuestao(TipoQuestao.MULTIPLA_ESCOLHA);
 		q1.setAreaConhecimento(area);
 		q1.addAssunto(assunto);
@@ -246,6 +257,7 @@ public class RelatorioCorrecaoProvaTest {
 	private Questao questao3(NivelDificuldade nivelDificuldade,
 			AreaConhecimento area, Assunto assunto) {
 		Questao q1 = new Questao();
+		q1.setId(3l);
 		q1.setTipoQuestao(TipoQuestao.ESCOLHA_UNICA);
 		q1.setAreaConhecimento(area);
 		q1.addAssunto(assunto);
@@ -284,6 +296,7 @@ public class RelatorioCorrecaoProvaTest {
 	private Questao questao4(NivelDificuldade nivelDificuldade,
 			AreaConhecimento area, Assunto assunto) {
 		Questao q1 = new Questao();
+		q1.setId(4l);
 		q1.setTipoQuestao(TipoQuestao.ESCOLHA_UNICA);
 		q1.setAreaConhecimento(area);
 		q1.addAssunto(assunto);
@@ -322,6 +335,7 @@ public class RelatorioCorrecaoProvaTest {
 	private Questao questao5(NivelDificuldade nivelDificuldade,
 			AreaConhecimento area, Assunto assunto) {
 		Questao q1 = new Questao();
+		q1.setId(5l);
 		q1.setTipoQuestao(TipoQuestao.ESCOLHA_UNICA);
 		q1.setAreaConhecimento(area);
 		q1.addAssunto(assunto);

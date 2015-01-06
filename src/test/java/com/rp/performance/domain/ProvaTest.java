@@ -24,6 +24,7 @@ public class ProvaTest {
 		a.addAssunto(as);
 		
 		Questao q = new Questao();
+		q.setId(1l);
 		q.setAreaConhecimento(a);
 		q.addAssunto(as);
 		q.setQuestao("O que é Spring?");
@@ -42,7 +43,12 @@ public class ProvaTest {
 		q.addGabarito(aq2);
 		
 		p = new Prova();
-		p.addQuestao(q);
+		
+		ProvaQuestao pq = new ProvaQuestao();
+		pq.setQuestao(q);
+		pq.setOrdem(1);
+		pq.setPeso(1);
+		p.addQuestao(pq);
 		p.setAreaConhecimento(a);
 		p.setDescricao("Prova Básica de Spring");
 		p.setOrientacoes("Orientacao 1");
