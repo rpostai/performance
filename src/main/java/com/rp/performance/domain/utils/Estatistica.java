@@ -40,4 +40,16 @@ public class Estatistica {
 		});
 	}
 
+	public static float calcularValorMinimo(List<Float> valores) {
+		return valores.stream().min((x, y) -> {
+			return x > y ? 1 : x < y ? -1 : 0;
+		}).get();
+	}
+
+	public static float calcularValorMaximo(List<Float> valores) {
+		return valores.stream().max((x, y) -> {
+			return x > y ? 1 : x < y ? -1 : 0;
+		}).get();
+	}
+
 }
