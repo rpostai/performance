@@ -17,7 +17,7 @@ public class RelatorioComparacaoCandidato {
 
 	private List<ExecucaoProva> provas = new ArrayList<ExecucaoProva>();
 
-	private RelatorioComparacaoCandidato(ExecucaoProva prova,
+	public RelatorioComparacaoCandidato(ExecucaoProva prova,
 			ExecucaoProva provaComparar) {
 		provaBase = prova;
 		provas.add(provaComparar);

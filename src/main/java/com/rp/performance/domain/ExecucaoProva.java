@@ -290,33 +290,46 @@ public class ExecucaoProva extends BaseEntity {
 
 								List<AlternativaQuestao> gabarito = resposta
 										.getQuestao().getGabarito();
-								List<AlternativaQuestao> respostasCorretas = resposta
-										.getRespostas().stream()
-										.filter(resp -> {
-											return gabarito.contains(resp);
-										}).collect(Collectors.toList());
-								List<AlternativaQuestao> respostasErradas = resposta
-										.getRespostas().stream()
-										.filter(resp -> {
-											return !gabarito.contains(resp);
-										}).collect(Collectors.toList());
-								double saldo = respostasCorretas.size()
-										- respostasErradas.size();
-								if (saldo > 0) {
-									notaQuestaoResposta = saldo
-											/ gabarito.size();
+								if (resposta
+										.getRespostas() != null && resposta
+										.getRespostas().size() > 0) {
+									
+									List<AlternativaQuestao> respostasCorretas = resposta
+											.getRespostas().stream()
+											.filter(resp -> {
+												return gabarito.contains(resp);
+											}).collect(Collectors.toList());
+									List<AlternativaQuestao> respostasErradas = resposta
+											.getRespostas().stream()
+											.filter(resp -> {
+												return !gabarito.contains(resp);
+											}).collect(Collectors.toList());
+									double saldo = respostasCorretas.size()
+											- respostasErradas.size();
+									if (saldo > 0) {
+										notaQuestaoResposta = saldo
+												/ gabarito.size();
+									}
+
+									correcao.setGabarito(gabarito);
+									correcao.setRespostas(resposta.getRespostas());
+									correcao.setNotaCalculada(new Float(
+											notaQuestaoResposta));
+
+									correcao.setQuestaoCorreta(notaQuestaoResposta == 1.0);
+
+									correcao.setQuestaoParcialmentecorreta((notaQuestaoResposta > 0)
+											&& (notaQuestaoResposta < 1.0));
+								} else {
+									correcao.setNotaCalculada(new Float(
+											0));
+									
+									correcao.setQuestaoCorreta(false);
+									
+									correcao.setQuestaoParcialmentecorreta(false);
 								}
-
-								correcao.setGabarito(gabarito);
-								correcao.setRespostas(resposta.getRespostas());
-								correcao.setNotaCalculada(new Float(
-										notaQuestaoResposta));
-
-								correcao.setQuestaoCorreta(notaQuestaoResposta == 1.0);
-
-								correcao.setQuestaoParcialmentecorreta((notaQuestaoResposta > 0)
-										&& (notaQuestaoResposta < 1.0));
-
+								
+								
 							}
 							result.add(correcao);
 						});
